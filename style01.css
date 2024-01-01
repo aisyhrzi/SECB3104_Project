@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Glacial Indifference', sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+  }
+  
+  /* Style the header */
+  .header {
+    /*background-color: #36454F; /* Steel blue background */
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: #fff; /* White text */
+  }
+  
+  /* Create three equal columns that floats next to each other */
+  .column1 {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    transition: all 0.3s ease-in-out; /* Add transition for hover effect */
+    border: 7px solid #36454F; /* Add a border around each column */
+    border-radius: 10px; /* Optional: Add rounded corners to the border */
+    margin-bottom: 20px; /* Optional: Add margin between columns */
+  }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media (max-width: 600px) {
+      .column1 {
+        width: 100%;
+      }
+    }
+  
+  /* Add hover effect to columns */
+  .column1:hover {
+    transform: scale(1.1); /* Enlarge the column */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  }
+
+  /* Create three equal columns that floats next to each other */
+  .column2 {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    transition: all 0.3s ease-in-out; /* Add transition for hover effect */
+    border: 7px solid #36454F; /* Add a border around each column */
+    border-radius: 10px; /* Optional: Add rounded corners to the border */
+    margin-bottom: 20px; /* Optional: Add margin between columns */
+  }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media (max-width: 600px) {
+      .column2 {
+        width: 100%;
+      }
+    }
+  
+  /* Add hover effect to columns */
+  .column2:hover {
+    transform: scale(1.1); /* Enlarge the column */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  }
+
+  /* Create three equal columns that floats next to each other */
+  .column3 {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    transition: all 0.3s ease-in-out; /* Add transition  for hover effect */
+    border: 7px solid #36454F; /* Add a border around each column */
+    border-radius: 10px; /* Optional: Add rounded corners to the border */
+    margin-bottom: 20px; /* Optional: Add margin between columns */
+  }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media (max-width: 600px) {
+      .column3 {
+        width: 100%;
+      }
+    }
+  
+  /* Add hover effect to columns */
+  .column3:hover {
+    transform: scale(1.1); /* Enlarge the column */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the footer */
+  .footer {
+    background-color: #36454F; /* Steel blue background */
+    padding: 10px;
+    text-align: center;
+    color: #fff; /* White text */
+  }
+
+  .link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #36454F; /* Steel blue text */
+    text-decoration: none; /* Remove underline */
+    border: 2px solid #36454F; /* Steel blue border */
+    border-radius: 5px; /* Rounded corners */
+    transition: all 0.3s ease-in-out; /* Add transition for hover effect */
+  }
+  
+  /* Add hover effect to links */
+  .link:hover {
+    color: #336699; /* Darker blue text */
+    border-color: #336699; /* Darker blue border */
+    transform: scale(1.1); /* Enlarge the text */
+  }
+
+  .container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+  }  
