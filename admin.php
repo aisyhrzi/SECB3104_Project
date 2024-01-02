@@ -1,6 +1,96 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "foodbank";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch data from distribution_events table
+$resultEvents = $conn->query("
+    SELECT event_type, COUNT(*) as event_count
+    FROM distribution_events
+    GROUP BY event_type
+");
+
+// Fetch data from distribution_events_r table
+$resultEventsR = $conn->query("
+    SELECT event_type, COUNT(*) as event_count
+    FROM distribution_events_r
+    GROUP BY event_type
+");
+
+// Fetch data from distribution_events_t table
+$resultEventsT = $conn->query("
+    SELECT event_type, COUNT(*) as event_count
+    FROM distribution_events_t
+    GROUP BY event_type
+");
+
+$conn->close();
+
+// Combine data from all tables
+$data = [
+    'events' => fetchData($resultEvents),
+    'events_r' => fetchData($resultEventsR),
+    'events_t' => fetchData($resultEventsT),
+];
+
+function fetchData($result)
+{
+    $data = ['labels' => [], 'values' => []];
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data['labels'][] = $row["event_type"];
+            $data['values'][] = $row["event_count"];
+        }
+    }
+
+    return $data;
+}
+?>
+
+
+<?php
+$dataPoints = [
+    ["label" => "Event types : Transportation", "y" => $data['events_t']['values']],
+    ["label" => "Event types : Weekly Distribution", "y" => $data['events']['values']],
+    ["label" => "Event types : Pickup From Restaurant", "y" => $data['events_r']['values']],
+];
+?>
+
+
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <!-- Include the required meta tags, CSS links, and other head elements -->
+     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script>
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Types Of Volunteers"
+                },
+                subtitles: [{
+                    text: "Foodbank. My"
+                }],
+                data: [{
+                    type: "pie",
+                    yValueFormatString: "#,##\"volunteers\"",
+                    indexLabel: "{label} ({y})",
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                }]
+            });
+            chart.render();
+        }
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
@@ -22,16 +112,19 @@ body {
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin: 50;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-    height: 100%; /* Set height to 100% of the viewport height */
-    overflow: hidden; /* Hide overflow to prevent scrolling */
-}
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin: 50px auto; /* Center the container horizontally */
+        padding: 20px;
+        max-width: 1000px; /* Set your desired maximum width */
+        width: 95%; /* Adjust the width as needed */
+    }
+
+    .grid-item {
+        /* Your existing styles remain unchanged */
+        width: 100%; /* Set width to 100% to fill the grid container */
+    }
 
 .navbar {
     background-color: #fff;
@@ -59,17 +152,6 @@ body {
         }
 
       
-
-        .grid-item {
-            background-color: #fff;
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease-in-out;
-            width: 100%;
-        }
-
         .grid-item:hover {
             transform: scale(1.05);
         }
@@ -182,7 +264,8 @@ body {
 
         <div class="grid-item">
             <h3>Volunteers</h3>
-            <p>Your content here</p>
+            <p><div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    </div></p>
         </div>
 
         <div class="grid-item">
