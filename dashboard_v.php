@@ -71,7 +71,7 @@
     </div>
  
     <div class="column1" style="background-color:#F0FFFF;">
-        <section style="text-align: center; padding: 70px;">
+        <section style="text-align: center; padding: 20px;">
             <h2 size="5"><a href="weekly_distribution.php" class="link">Weekly Distribution</a></h2>
             <p size="5"> Weekly Distribution allows users to schedule and participate in food distribution events. 
                 Users can select the date, time, and location of the distribution event, and the app will handle the rest.</p>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="column2" style="background-color:#FFFFFF;">
-        <section style="text-align: center; padding: 70px;">
+        <section style="text-align: center; padding: 20px;">
             <h2><a href="restaurant_pickup.php" class="link">Picking Up Food from Restaurants</a></h2>
             <p>This feature allows users to schedule and participate in picking up surplus food from restaurants. 
                 Users can select the date, time, and restaurant location for the pick-up, and the app will facilitate the process.</p>
@@ -87,7 +87,7 @@
     </div>
 
     <div class="column3" style="background-color:#F0FFFF;">
-        <section style="text-align: center; padding: 70px;">
+        <section style="text-align: center; padding: 20px;">
             <h2><a href="transportation.php" class="link">Transportation</a></h2>
             <p>This feature enables users to manage the transportation logistics for the distribution of food. 
                 Users can schedule transportation for food pick-ups and deliveries, input vehicle and route details, and the app will assist in ensuring smooth transportation of the food to the designated distribution points.</p>
