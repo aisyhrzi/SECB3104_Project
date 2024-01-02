@@ -14,9 +14,11 @@
     <style>
         body {
             background-image: url('image.jpg');
-            background-size: cover; /* Adjust the sizing of the background image */
-            background-position: center center; /* Center the background image */
-            background-repeat: no-repeat; /* Ensure the background image doesn't repeat */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Set a fixed height for the body */
+            margin: 0;
         }
 
         /* Specific styles for each column */
@@ -53,11 +55,12 @@
 <body>
     
 <div class="topnav">
-    <a id="homeLink" href="#home" class="active" onclick="handleClick(this)">🔔 Home</a>
+    <a id="homeLink" href="#home" class="active" onclick="handleClick(this)">🏠 Home</a>
     <a id="displayButton" onclick="displayInfo(); handleClick(this)">📅 Weekly Distribution Schedule</a>
     <a id="displayButtonR" onclick="displayInfoR(); handleClick(this)">🍽️ Restaurant Pick-up Schedule</a>
     <a id="displayButtonT" onclick="displayInfoT(); handleClick(this)">🚚 Transportation Schedule</a>
     <a id="displayButtonH" onclick="displayInfoH(); handleClick(this)">🕰️ History</a> <!-- Update ID here -->
+    <a id="displayButtonRec" onclick="displayInfoRec(); handleClick(this)">📦 Receiver Notification</a>
 </div>
 
 <div id="infoDisplay"></div>
