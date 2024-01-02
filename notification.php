@@ -4,25 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dashboard.css">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="shop.css">
+    <title>Your Web App</title>
 </head>
-<style>
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
-  align-text: center;
-}
-    </style>
 <body>
     <div class="app">
         <header class="app-header">
             <div class="app-header-logo">
                 <div class="logo">
                     <span class="logo-icon">
-                        <img src="logo.png">
+                        <img src="logo.png" />
                     </span>
                     <h1 class="logo-title">
                         <br>
@@ -32,7 +23,7 @@
             </div>
             <div class="app-header-navigation">
                 <div class="tabs">
-                    <a href="dashboard.php" class="active">
+                <a href="dashboard.php" >
                         Dashboard
                     </a>
                     <a href="shop.php">
@@ -44,7 +35,7 @@
                     <a href="donation.php">
                         Donation
                     </a>
-                    <a href="notification.php">
+                    <a href="notification.php" class="active">
                         Notification
                     </a>
                     
@@ -65,19 +56,14 @@
             <div class="app-body-main-content">
                 <section class="service-section">
                     <br>
-                    <h2>Dashboard</h2>
+                    <h2>Notification</h2>
                     <div class="service-section-header">
                         <div class="search-field">
                             <i class="ph-magnifying-glass"></i>
                         </div>
                         
                     </div>
-                    <!-- Image and Paragraph -->
-                <img src="logo.png" alt="Dashboard Image" class="center">
-                <p class="center">Welcome to the FoodBank.MY. Explore the available   features and services to make a positive impact!</p>
-                <!-- End Image and Paragraph -->
-
-            </section>
+                    
                     
                 <footer class="footer">
                     <h1>FoodBank.MY<small>©</small></h1>

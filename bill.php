@@ -82,8 +82,8 @@ $client = getClient();
 $service = new Google\Service\Gmail($client);
 
 // Set your email details
-$sender = 'nur.aisyah.fatihah@graduate.utm.my'; // replace with your email
-$to = 'aisyah28bieber@gmail.com'; // replace with the recipient's email
+$sender = 'aisyah.mn@graduate.utm.my'; // replace with your email
+$to = 'zerowaste.fbmy@gmail.com'; // replace with the recipient's email
 $subject = 'Donation Receipt';
 $message = ' Thank you for making a donation for us.
     Your generous contribution will make a difference.

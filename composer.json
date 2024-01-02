@@ -1,7 +1,6 @@
 {
     "require": {
-        "stripe/stripe-php": "^7.100",
-        "google/apiclient": "^2.0",
-        "guzzlehttp/guzzle": "^7.0"
+        "google/apiclient": "^2.0"
     }
 }
+

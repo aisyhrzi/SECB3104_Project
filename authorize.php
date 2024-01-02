@@ -7,7 +7,7 @@ function getClient()
     $client = new Google\Client();
     $client->setApplicationName('Gmail API PHP Quickstart');
     $client->setScopes(Google_Service_Gmail::MAIL_GOOGLE_COM);
-    $client->setAuthConfig('credentials.json');
+    $client->setAuthConfig('composer.json');
     $client->setAccessType('offline');
     $client->setPrompt('select_account consent');
 
