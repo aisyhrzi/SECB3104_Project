@@ -34,7 +34,7 @@ if (isset($_SESSION['id'])) {
         $detailsData = $detailsResult->fetch_assoc();
         $first_name = $detailsData["first_name"];
         $last_name = $detailsData["last_name"];
-        $email_id = $detailsData["email_id"];
+        $email = $detailsData["email"];
     }
 
     // Close the prepared statement for the details table
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!isset($_SESSION['id'])) {
         $first_name = $_POST["first_name"];
         $last_name = $_POST["last_name"];
-        $email_id = $_POST["email_id"];
+        $email = $_POST["email"];
     }
 }
 ?>
