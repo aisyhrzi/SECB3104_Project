@@ -13,23 +13,19 @@ if ($conn->connect_error) {
 }
 
 // Retrieve information from the database
-$sql = "SELECT * FROM distribution_events_t";
+$sql = "SELECT * FROM volunteer_request";
 $result = $conn->query($sql);
 
 // Display the information
 if ($result->num_rows > 0) {
     echo "<div id='infoDisplay'>"; // Add a container div
     echo "<table border='1'>";
-    echo "<tr><th>Name</th><th>Date</th><th>Time</th><th>Pickup Location</th><th>Dropoff Location</th><th colspan='2' >Adjustments</th></tr>";
+    echo "<tr><th>Reciever Email</th><th>Time</th><th>Location</th>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . $row["name"] . "</td>";
-        echo "<td>" . $row["date"] . "</td>";
+        echo "<td>" . $row["email"] . "</td>";
         echo "<td>" . $row["time"] . "</td>";
-        echo "<td>" . $row["locationPU"] . "</td>";
-        echo "<td>" . $row["locationDO"] . "</td>";
-        echo '<td><button onclick="deleteInfoT(' . $row['id'] . ')">Delete</button></td>';
-        echo '<td><button onclick="updateInfoT(' . $row['id'] . ')">Update</button></td>';
+        echo "<td>" . $row["shoplocation"] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -106,18 +102,16 @@ $conn->close();
 <div id="infoModal" class="modal">
     <!-- Modal content -->
     <h2>Information</h2>
-    <p>Volunteer Name: <?php echo $result['name']; ?></p>
-    <p>Date: <?php echo $result['date']; ?></p>
+    <p>Reciever Email: <?php echo $result['email']; ?></p>
     <p>Time: <?php echo $result['time']; ?></p>
-    <p>Pickup Location: <?php echo $result['locationPU']; ?></p>
-    <p>Dropoff Location: <?php echo $result['locationDO']; ?></p>
+    <p>Location: <?php echo $result['shoplocation']; ?></p>
     <!-- Close button -->
     <button onclick="closeModal()">Close</button>
 </div>
 
 <!-- Include your JavaScript at the end of the body -->
 <script>
-    function displayInfoT() {
+    function displayInfoRec() {
     console.log("Button clicked");
     // Rest of your code
     }
