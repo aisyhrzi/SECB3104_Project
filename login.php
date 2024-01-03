@@ -3,10 +3,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Replace these credentials with your actual database credentials
     $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "foodbank";
-
+$username = "root";
+$password = "";
+$dbname = "foodbank";
+    
     // Create a connection to the database
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -20,13 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredPassword = $_POST['password'];
 
     // Use prepared statements to prevent SQL injection
-    $stmt = $conn->prepare("SELECT * FROM signup WHERE username = ? AND password = ?");
-    
-    // Check if the prepare statement succeeded
-    if ($stmt) {
-        $stmt->bind_param("ss", $enteredUsername, $enteredPassword);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    $stmt = $conn->prepare("SELECT * FROM details WHERE username = ?");
+    $stmt->bind_param("s", $enteredUsername);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     // Check if the query returned a matching user
     if ($result->num_rows > 0) {
@@ -48,24 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error_message = "Invalid username or password. Please try again.";
         }
     } else {
-        // Handle the case where the prepare statement failed
-        die("Prepare statement failed: " . $conn->error);
+        // User not found, set an error message
+        $error_message = "Invalid username or password. Please try again.";
     }
 
     // Close the database connection
+    $stmt->close();
     $conn->close();
 }
-
-// Redirect to the login page if there's an error message
-session_start();
-if (isset($_SESSION['error_message'])) {
-    $error_message = $_SESSION['error_message'];
-    unset($_SESSION['error_message']);
-}
-session_write_close();
 ?>
-<!-- The rest of your HTML remains unchanged -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -263,7 +251,7 @@ session_write_close();
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return signIn()">
             <div class="form-control">
                 <input type="text" name="username" id="username" required>
-                <label>Email or phone number</label>
+                <label>Username</label>
             </div>
             <div class="form-control">
                 <input type="password" name="password" id="password" required>

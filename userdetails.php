@@ -302,7 +302,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <div>
                     <label for="email">Email Address:</label>
-                    <span id="email_id"><?php echo $email_id; ?></span>
+                    <span id="email"><?php echo $email; ?></span>
                 </div>
 
                 <!-- Add the phone number input -->

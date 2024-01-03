@@ -24,7 +24,7 @@ $sqlDetails = "CREATE TABLE IF NOT EXISTS details (
     id INT(11)AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
-    email_id VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL, 
     password VARCHAR(255) NOT NULL
 )";
