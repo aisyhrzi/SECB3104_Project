@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,33 +139,14 @@
             <div class="app-body-main-content">
                 <section class="service-section">
                     <br>
-                    <h2>Donation</h2>
+                    <h2>Donation Aid</h2>
                     <div class="service-section-header">
                     <div class="request-volunteer-form">
-    <h3>Donation Aid</h3>
-    <form action="amountdonation.php" method="post">
-    <label for="first_name" class="donation-form">First Name:</label>
-        <input type="text" id="first_name" name="first_name" required>
-
-        <label for="last_name" class="donation-form">Last Name:</label>
-        <input type="text" id="last_name" name="last_name" required>
-
-        <label for="email" class="donation-form">Email Address:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="phone" class="donation-form">Phone Number:</label>
-        <input type="number" id="phone" name="phone" required>
-
-        <label for="card_number" class="donation-form">Card Bank Number:</label>
-        <input type="number" id="card_number" name="card_number" required>
-
-        <label for="expiry_date" class="donation-form">Expiry Date:</label>
-        <input type="number" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
-
-        <label for="cvv" class="donation-form">CVV:</label>
-        <input type="number" id="cvv" name="cvv" required>
-
-        <button type="submit">Donate Now</button>
+    <h3>💸 Your Every Dollar Counts: Even the smallest contribution makes a significant impact. 
+        Your donation doesn't just fund an app; it fuels a mission to eradicate hunger and build a sustainable future.</h3>
+        <form action="userdetails.php" method="POST">
+        <button type="submit"> Go Now </button>
+      
     </form>
     <div class="search-field">
                             <i class="ph-magnifying-glass"></i>

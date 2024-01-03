@@ -38,7 +38,7 @@ $dbname = "foodbank";
             // Add other user-related information as needed
 
             // Redirect to the desired page
-            header("Location: userdetails.php");
+            header("Location: role.php");
             exit();
         } else {
             // Authentication failed, set an error message

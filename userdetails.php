@@ -47,19 +47,19 @@ if (isset($_SESSION['id'])) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve user details from the form
-    $phone_number = $_POST["phone_number"];
-    $donate = $_POST["donate"];
+    $phone_number = isset($_POST["phone_number"]) ? $_POST["phone_number"] : "";
+    $donate = isset($_POST["donate"]) ? $_POST["donate"] : "";
 
     // If the user is not logged in, get the details from the form
     if (!isset($_SESSION['id'])) {
-        $first_name = $_POST["first_name"];
-        $last_name = $_POST["last_name"];
-        $email = $_POST["email"];
+        $first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";
+        $last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
+        $email = isset($_POST["email"]) ? $_POST["email"] : "";
     }
 }
 ?>
     
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -338,7 +338,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </script>
 </body>
 
-</html>
-<!-- ... rest of your form ... -->
-</form>
+
 
