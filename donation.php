@@ -87,7 +87,15 @@
     .request-volunteer-form button:hover {
         background-color: #45a049;
     }
+    .request-volunteer-form h3 {
+    text-align: center;
+    color: #333;
+    transition: transform 0.3s ease-in-out; /* Add a transition for the transform property */
+}
 
+.request-volunteer-form h3:hover {
+    transform: scale(1.1); /* Add a scale transformation on hover for the bubbly effect */
+}
     
 </style>
 <body>
