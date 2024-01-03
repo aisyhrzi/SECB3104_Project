@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('makei.jpg') center/cover no-repeat; /* Add your background image URL */
+            background: url('makei.jpg') center/cover no-repeat;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -87,11 +87,11 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
-            width: 1300px; /* Adjusted width */
+            width: 1300px;
             padding: 20px;
             text-align: center;
-            margin: auto; /* Center the container */
-            background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent white background */
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         h1 {
@@ -100,8 +100,8 @@
         }
 
         .table-container {
-            max-height: 500px; /* Set the maximum height of the table container */
-            overflow-y: auto; /* Enable vertical scrollbar */
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         table {
@@ -185,6 +185,22 @@
             // Handle delete action
             if (isset($_POST['delete_id'])) {
                 $deleteId = $_POST['delete_id'];
+
+                // Display confirmation alert
+                echo "
+                    <script>
+                        var confirmDelete = confirm('Are you sure you want to delete this record?');
+
+                        if (confirmDelete) {
+                            window.location.href = 'adminPanel.php?confirm_delete_id=$deleteId';
+                        }
+                    </script>
+                ";
+            }
+
+            // Confirm and execute deletion
+            if (isset($_GET['confirm_delete_id'])) {
+                $deleteId = $_GET['confirm_delete_id'];
                 $deleteQuery = "DELETE FROM donorDetails WHERE id = :id";
                 $deleteStmt = $db->prepare($deleteQuery);
                 $deleteStmt->bindParam(':id', $deleteId, PDO::PARAM_INT);
@@ -262,6 +278,7 @@
 </body>
 
 </html>
+
 
 
 
