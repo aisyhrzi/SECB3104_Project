@@ -19,17 +19,8 @@ $sqlUserDetails = "CREATE TABLE IF NOT EXISTS UserDetails (
     donate FLOAT(6)
 )";
 
-// Create the "details" table if it doesn't exist
-$sqlDetails = "CREATE TABLE IF NOT EXISTS details (
-    id INT(11)AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    username VARCHAR(255) NOT NULL, 
-    password VARCHAR(255) NOT NULL
-)";
 
-if (mysqli_query($conn, $sqlUserDetails) && mysqli_query($conn, $sqlDetails)) {
+if (mysqli_query($conn, $sqlUserDetails)) {
     echo "Tables created successfully or already exist<br>";
 } else {
     echo "Error creating tables: " . mysqli_error($conn);

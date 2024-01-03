@@ -20,7 +20,7 @@ $dbname = "foodbank";
     $enteredPassword = $_POST['password'];
 
     // Use prepared statements to prevent SQL injection
-    $stmt = $conn->prepare("SELECT * FROM details WHERE username = ?");
+    $stmt = $conn->prepare("SELECT * FROM signup WHERE username = ?");
     $stmt->bind_param("s", $enteredUsername);
     $stmt->execute();
     $result = $stmt->get_result();

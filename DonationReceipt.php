@@ -101,7 +101,7 @@
     }
 
     // Retrieve user details from the database
-    $result = $conn->query("SELECT * FROM details WHERE id = $id");
+    $result = $conn->query("SELECT * FROM signup WHERE id = $id");
 
     if ($result->num_rows > 0) {
         $rowdetails = $result->fetch_assoc();

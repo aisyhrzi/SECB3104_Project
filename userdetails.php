@@ -23,7 +23,7 @@ if (isset($_SESSION['id'])) {
     }
 
     // Retrieve user details from the database using the user_id from the session
-    $detailsStmt = $conn->prepare("SELECT first_name, last_name, email_id FROM details WHERE id = ?");
+    $detailsStmt = $conn->prepare("SELECT first_name, last_name, email FROM signup WHERE id = ?");
     $detailsStmt->bind_param("i", $user_id);
     $detailsStmt->execute();
 
