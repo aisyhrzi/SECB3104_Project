@@ -27,6 +27,7 @@
     #infoDisplay th, #infoDisplay td {
         padding: 12px; /* Increase padding for better spacing */
         border: 1px solid #ddd; /* Match border color */
+        font-size: 12px; /* Adjust the font size as needed */
     }
 
     #infoDisplay th {

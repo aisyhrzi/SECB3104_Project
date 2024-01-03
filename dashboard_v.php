@@ -9,6 +9,7 @@
     <script src="weekly_javaScript.js" defer></script>
     <script src="restaurant_javaScript.js" defer></script>
     <script src="transportation_javaScript.js" defer></script>
+    <script src="request_javaScript.js" defer></script>
     <script src="history_javaScript.js" defer></script>
 
     <style>
