@@ -3,17 +3,17 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // Retrieve user input
-    $user_id = isset($_GET["user_id"]) ? $_GET["user_id"] : null;
+    $id = isset($_GET["id"]) ? $_GET["id"] : null;
     $donate = isset($_GET["donate"]) ? floatval($_GET["donate"]) : 0;
     $user_email = isset($_GET["email"]) ? $_GET["email"] : null;  // Add this line to get user email
 
     // Debugging: Output received data
-    echo "User ID: " . $user_id . "<br>";
+    echo "User ID: " . $id . "<br>";
     echo "User Email: " . $user_email . "<br>";  // Output user email for debugging
     echo "Donation Amount: " . $donate . "<br>";
 
     // Validate user input
-    if (!$user_id || $donate <= 0) {
+    if (!$id || $donate <= 0) {
         echo "Invalid user ID or donation amount.";
         exit();
     }

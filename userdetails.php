@@ -1,65 +1,63 @@
 <?php
-    session_start();
+session_start();
 
-    // Initialize variables
-    $first_name = $last_name = $email_id = "";
+// Initialize variables
+$first_name = $last_name = $email_id = $user_id = "";
 
-    // Check if the user is logged in
-    if (isset($_SESSION['user_id'])) {
-        $user_id = $_SESSION['user_id'];
+// Check if the user is logged in
+if (isset($_SESSION['id'])) {
+    $user_id = $_SESSION['id'];
 
-        // Replace these credentials with your actual database credentials
-        $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "foodbank";
+    // Replace these credentials with your actual database credentials
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "foodbank";
 
-        // Create a connection to the database
-        $conn = new mysqli($servername, $username, $password, $dbname);
+    // Create a connection to the database
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check the connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        // Retrieve user details from the database using the user_id from the session
-        $detailsStmt = $conn->prepare("SELECT first_name, last_name, email_id FROM details WHERE user_id = ?");
-        $detailsStmt->bind_param("i", $user_id);
-        $detailsStmt->execute();
-
-        // Fetch the result
-        $detailsResult = $detailsStmt->get_result();
-
-        if ($detailsResult->num_rows > 0) {
-            $detailsData = $detailsResult->fetch_assoc();
-            $first_name = $detailsData["first_name"];
-            $last_name = $detailsData["last_name"];
-            $email_id = $detailsData["email_id"];
-        }
-
-        // Close the prepared statement for the details table
-        $detailsStmt->close();
-
-        // Close the database connection
-        $conn->close();
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        // Retrieve user details from the form
-        $phone_number = $_POST["phone_number"];
-        $donate = $_POST["donate"];
+    // Retrieve user details from the database using the user_id from the session
+    $detailsStmt = $conn->prepare("SELECT first_name, last_name, email_id FROM details WHERE id = ?");
+    $detailsStmt->bind_param("i", $user_id);
+    $detailsStmt->execute();
 
-        // If the user is not
-        // If the user is not logged in, get the details from the form
-        if (!isset($_SESSION['user_id'])) {
-            $first_name = $_POST["first_name"];
-            $last_name = $_POST["last_name"];
-            $email_id = $_POST["email_id"];
-        }
+    // Fetch the result
+    $detailsResult = $detailsStmt->get_result();
 
-        // ... rest of the code for database insertion
+    if ($detailsResult->num_rows > 0) {
+        $detailsData = $detailsResult->fetch_assoc();
+        $first_name = $detailsData["first_name"];
+        $last_name = $detailsData["last_name"];
+        $email_id = $detailsData["email_id"];
     }
+
+    // Close the prepared statement for the details table
+    $detailsStmt->close();
+
+    // Close the database connection
+    $conn->close();
+}
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Retrieve user details from the form
+    $phone_number = $_POST["phone_number"];
+    $donate = $_POST["donate"];
+
+    // If the user is not logged in, get the details from the form
+    if (!isset($_SESSION['id'])) {
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
+        $email_id = $_POST["email_id"];
+    }
+}
+?>
     
 ?><!DOCTYPE html>
 <html lang="en">

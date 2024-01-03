@@ -14,14 +14,14 @@ if (!$conn) {
 
 // Create the "UserDetails" table if it doesn't exist
 $sqlUserDetails = "CREATE TABLE IF NOT EXISTS UserDetails (
-    user_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
     phone_number INT(12),
     donate FLOAT(6)
 )";
 
 // Create the "details" table if it doesn't exist
 $sqlDetails = "CREATE TABLE IF NOT EXISTS details (
-    user_id INT(11)AUTO_INCREMENT PRIMARY KEY,
+    id INT(11)AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email_id VARCHAR(255) NOT NULL,

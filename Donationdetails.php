@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Execute the prepared statement
     if ($stmt->execute()) {
         // Get the user_id of the inserted record
-        $user_id = $stmt->insert_id;
+        $id = $stmt->insert_id;
 
         // Close the prepared statement
         $stmt->close();
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conn->close();
 
         // Redirect to the receipt page with user_id
-        header("Location: DonationReceipt.php?user_id=$user_id");
+        header("Location: DonationReceipt.php?id=$id");
         exit();
     } else {
         // Log the error

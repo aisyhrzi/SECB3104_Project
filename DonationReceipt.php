@@ -1,7 +1,9 @@
 <!DOCTYPE HTML>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donation Receipt</title><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Receipt</title>
+
+<head>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -75,19 +77,17 @@
     </style>
 </head>
 
-
-
 <body>
-<?php
+    <?php
     // Retrieve user details from the URL parameter
-    if (isset($_GET["user_id"])) {
-        $user_id = $_GET["user_id"];
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
     } else {
-        // Handle the case when "user_id" is not set, for example, redirect the user or show an error message.
+        // Handle the case when "id" is not set, for example, redirect the user or show an error message.
         echo "User ID is not provided.";
         exit(); // Stop further execution to avoid the fatal error below.
     }
-    
+
     // Assuming you have a database connection
     $servername = "localhost";
     $username = "root";
@@ -101,36 +101,38 @@
     }
 
     // Retrieve user details from the database
-    $result = $conn->query("SELECT * FROM details WHERE user_id = $user_id");
+    $result = $conn->query("SELECT * FROM details WHERE id = $id");
 
     if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-?>
-        <!-- Your receipt HTML with dynamic data -->
-        <div class="receipt-container">
-            <img src="https://i.pinimg.com/736x/fc/46/f5/fc46f5d96252f22b456ec4b81298398c.jpg" alt="Logo" class="logo">
-            <h2>Donation Receipt</h2>
-            <div class="bill-details">
-                <p><strong>Date:</strong> <span id="current-date"></span></p>
-                <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
-            </div>
-            <div class="thank-you">Thank you for your donation!</div>
-            <p class="donor-name"><?php echo $row["first_name"] . " " . $row["last_name"]; ?></p>
-<?php
+        $rowdetails = $result->fetch_assoc();
+
         // Fetch additional details from the userdetails table
-        $result = $conn->query("SELECT * FROM userdetails WHERE user_id = $user_id");
+        $result = $conn->query("SELECT * FROM userdetails WHERE id = $id");
 
         if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-?>
-            <p>Your generous contribution will make a difference.</p>
-            <p class="amount-details"><strong>Amount:</strong> $<?php echo number_format($row["donate"], 2); ?></p>
+            $rowuser = $result->fetch_assoc();
+    ?>
+            <!-- Your receipt HTML with dynamic data -->
+            <div class="receipt-container">
+                <img src="https://i.pinimg.com/736x/fc/46/f5/fc46f5d96252f22b456ec4b81298398c.jpg" alt="Logo" class="logo">
+                <h2>Donation Invoice Receipt</h2>
+                <div class="bill-details">
+                    <p><strong>Date:</strong> <span id="current-date"></span></p>
+                    <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+                </div>
+                <div class="thank-you">Thank you for your donation!</div>
+                <p class="donor-name"><?php echo $rowdetails["first_name"] . " " . $rowdetails["last_name"]; ?></p>
 
-            <!-- Rest of your receipt HTML -->
+                <!-- Add this part to display userdetails -->
+                <p>Your generous contribution will make a difference.</p>
+                <p class="amount-details"><strong>Amount:</strong> $<?php echo number_format($rowuser["donate"], 2); ?></p>
 
-            <a href="paymentgetaway.php?user_id=<?php echo $user_id; ?>&donate=<?php echo $row['donate']; ?>" class="back-to-home">Procced to Payment</a>
-        </div>
-<?php
+                <!-- Rest of your receipt HTML -->
+
+                <a href="paymentgetaway.php?id=<?php echo $id; ?>&donate=<?php echo $rowuser['donate']; ?>" class="back-to-home">Proceed to Payment</a>
+            </div>
+
+    <?php
         } else {
             echo "User details not found.";
         }
@@ -139,17 +141,22 @@
     }
 
     $conn->close();
-?>
-    <!-- " class="back-to-home">Proceed to Payment</a> -->
+    ?>
     <script>
         // JavaScript to display the current date
         const currentDate = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
         document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', options);
 
-        // JavaScript to generate a random transaction ID
-        const transactionId = Math.random().toString(36).substr(2, 10);
-        document.getElementById('transaction-id').textContent = transactionId;
-    </script>
+// JavaScript to generate a random transaction ID
+const transactionId = Math.random().toString(36).substr(2, 10);
+document.getElementById('transaction-id').textContent = transactionId;
+</script>
 </body>
+
 </html>
+

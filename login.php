@@ -33,7 +33,7 @@ $dbname = "foodbank";
             // Authentication successful, start a session
             session_start();
             // Store user information in session variables
-            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
             // Add other user-related information as needed
 
