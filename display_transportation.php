@@ -65,15 +65,38 @@ $conn->close();
             text-align: center; /* Center the content horizontally */
         }
 
-        /* Center the table */
-        #infoDisplay {
-            margin: 20px auto; /* Set top and bottom margin to 20px, and left and right margin to auto */
-            max-width: 80%; /* Adjust the maximum width as needed */
-            text-align: center; /* Center the content horizontally */
-            background-color: #F0FFFF; /* Add a background color */
-            padding: 5px; /* Add padding for better visual appearance */
-            border-radius: 10px; /* Optional: Add rounded corners to the background */
-        }
+        /* Center the table and apply styling to the container */
+    #infoDisplay {
+        margin: 20px auto; /* Set top and bottom margin to 20px, and left and right margin to auto */
+        max-width: 90%; /* Adjust the maximum width as needed */
+        text-align: center; /* Center the content horizontally */
+        background-color: #ffffff; /* Change background color */
+        padding: 15px; /* Adjusted padding for better visual appearance */
+        border: 1px solid #ddd; /* Change border color */
+        border-radius: 10px; /* Optional: Add rounded corners to the background */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    #infoDisplay table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background-color: #ffffff;
+        border: 1px solid #ddd; /* Change border color */
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    }
+
+    #infoDisplay th, #infoDisplay td {
+        padding: 12px; /* Increase padding for better spacing */
+        border: 1px solid #ddd; /* Match border color */
+    }
+
+    #infoDisplay th {
+        background-color: #f2f2f2; /* Light gray background for header */
+    }
 </style>
 </head>
 <body>

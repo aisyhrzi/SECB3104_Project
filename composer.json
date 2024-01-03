@@ -1,7 +1,12 @@
 {
+    "name": "asus/donor",
+    "description": "foodbank",
+    "autoload": {
+        "psr-4": {
+            "Asus\\Donor\\": "src/"
+        }
+    },
     "require": {
-        "stripe/stripe-php": "^7.100",
-        "google/apiclient": "^2.0",
-        "guzzlehttp/guzzle": "^7.0"
+        "google/apiclient": "2.0"
     }
 }

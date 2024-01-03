@@ -18,12 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
-    $email_id = $_POST['email_id'];
+    $email = $_POST['email'];
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hash the password for security
 
     // SQL query to insert data into the 'details' table
-    $sql = "INSERT INTO details (first_name, last_name, email_id, username, password) VALUES ('$first_name', '$last_name', '$email_id', '$username', '$password')";
+    $sql = "INSERT INTO signup (first_name, last_name, email, username, password) VALUES ('$first_name', '$last_name', '$email', '$username', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         // Redirect to another page
@@ -100,7 +100,7 @@ $conn->close();
     <input type="text" id="last_name" name="last_name" required>
 
     <label for="email">Email:</label>
-    <input type="email" id="email_id" name="email_id" required>
+    <input type="email" id="email" name="email" required>
 
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
