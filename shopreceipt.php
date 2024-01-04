@@ -213,7 +213,7 @@
                 <!-- Receipt Form -->
                 <div class="receipt-form" id="receiptForm" style="display: none;">
                     <h3>Receipt</h3>
-                    <form action="send_receipt.php" method="post">
+                    <form action="billf.php" method="post">
                         <label for="foodName">Food Name:</label>
                         <input type="text" id="foodName" name="foodName" value="<?php echo $foodName; ?>" readonly>
 
