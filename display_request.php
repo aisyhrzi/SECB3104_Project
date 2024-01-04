@@ -20,12 +20,13 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo "<div id='infoDisplay'>"; // Add a container div
     echo "<table border='1'>";
-    echo "<tr><th>Reciever Email</th><th>Time</th><th>Location</th>";
+    echo "<tr><th>Reciever Email</th><th>Time</th><th>Pickup Location</th><th>Drop-Off Location</th>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["email"] . "</td>";
         echo "<td>" . $row["time"] . "</td>";
         echo "<td>" . $row["shoplocation"] . "</td>";
+        echo "<td>" . $row["droplocation"] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -104,7 +105,8 @@ $conn->close();
     <h2>Information</h2>
     <p>Reciever Email: <?php echo $result['email']; ?></p>
     <p>Time: <?php echo $result['time']; ?></p>
-    <p>Location: <?php echo $result['shoplocation']; ?></p>
+    <p>Pickup Location: <?php echo $result['shoplocation']; ?></p>
+    <p>Drop-Off Location: <?php echo $result['droplocation']; ?></p>
     <!-- Close button -->
     <button onclick="closeModal()">Close</button>
 </div>
