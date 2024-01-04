@@ -12,7 +12,7 @@
     <header>
       <nav class="navbar">
         <div class="logo">
-        <img src="logo.png" alt="Donor Image" style="width: 115px;">
+        <img src="logocantik.png" alt="Donor Image" style="width: 115px;">
 </div>
         
         <ul class="menu-links">
