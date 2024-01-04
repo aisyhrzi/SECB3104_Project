@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Retrieve information from the database
-$sql = "SELECT * FROM volunteer_request";
+$sql = "SELECT * FROM volunteer_requests";
 $result = $conn->query($sql);
 
 // Display the information
