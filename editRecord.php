@@ -68,7 +68,7 @@
 
             try {
                 // Database connection
-                $db = new PDO('mysql:host=localhost;dbname=donorInfo', 'root', '');
+                $db = new PDO('mysql:host=localhost;dbname=foodbank', 'root', '');
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 // Fetch the record from the database based on the ID
