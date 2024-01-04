@@ -1,10 +1,11 @@
 <?php
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+    // Retrieve values from the form
     $email = $_POST['email'];
     $time = $_POST['time'];
-    $shoplocation = $_POST['location'];
+    $pickupLocation = $_POST['pickup_location'];
+    $dropoffLocation = $_POST['dropoff_location'];
 
     // Replace these database connection details with your own
     $servername = "localhost";
@@ -20,13 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Escape special characters to prevent SQL injection
-    $email = mysqli_real_escape_string($conn, $email);
-    $time = mysqli_real_escape_string($conn, $time);
-    $shoplocation = mysqli_real_escape_string($conn, $shoplocation);
-
-    // SQL query to insert data into the volunteer_requests table
-    $sql = "INSERT INTO volunteer_requests (email, time, shoplocation) VALUES ('$email', '$time', '$shoplocation')";
+    // Insert data into the volunteer_requests table
+    $sql = "INSERT INTO volunteer_requests (email, time, shoplocation, droplocation) VALUES ('$email', '$time', '$pickupLocation', '$dropoffLocation')";
 
     if ($conn->query($sql) === TRUE) {
         // Insertion successful
