@@ -79,7 +79,7 @@
             echo "<p><strong>Pickup Option:</strong> " . htmlspecialchars($row['pickupOption']) . "</p>";
 
             // Display the "Send Thank You" button
-            echo '<button onclick="sendThankYou(\'' . htmlspecialchars($row['donorEmail']) . '\')">Send To Email</button>';
+           // echo '<button onclick="sendThankYou(\'' . htmlspecialchars($row['donorEmail']) . '\')">Send To Email</button>';
         } else {
             echo "<p>No donations found.</p>";
         }
