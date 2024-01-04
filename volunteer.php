@@ -97,7 +97,7 @@
             <div class="app-header-logo">
                 <div class="logo">
                     <span class="logo-icon">
-                        <img src="logo.png" />
+                        <img src="logocantik.png" />
                     </span>
                     <h1 class="logo-title">
                         <br>
@@ -160,10 +160,20 @@
                 </select>
            
             
-                <label for="location">Shop Location:</label>
-                <input type="text" id="location" name="location" required>
+                
 
-                <div id="map"></div>
+                <div class="form-group">
+        <label for="pickup_location">Pick-Up Location:</label>
+        <input type="text" id="locationPU" name="pickup_location" required>
+        <div id="pickup_map"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="dropoff_location">Drop-Off Location:</label>
+        <input type="text" id="locationDO" name="dropoff_location" required>
+        <div id="dropoff_map"></div>
+    </div>
+            
                 
             
         
@@ -232,6 +242,81 @@
         }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ4VAT_LmNI0kKqUpPusyXa3BqYclROg&libraries=places&callback=initMap"></script>
+
+    <script>
+    function handleClick(clickedElement) {
+        // Check if the "Home" link is clicked
+        if (clickedElement.id === 'homeLink') {
+            // Reset the page or clear the displayed information
+            document.getElementById('infoDisplay').innerHTML = '';
+            // You can add additional reset actions if needed
+        }
+
+        // Remove the 'active' class from all links
+        var links = document.getElementsByClassName('topnav')[0].getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].classList.remove('active');
+        }
+
+        // Add the 'active' class to the clicked link
+        clickedElement.classList.add('active');
+    }
+    </script>
+
+    <script>
+        function initMap() {
+            // Common initialization code for both pickup and drop-off maps
+            window.pickupMap = new google.maps.Map(document.getElementById('pickup_map'), {
+                center: { lat: 1.5645, lng: 103.6373 },
+                zoom: 14.7
+            });
+
+            window.dropoffMap = new google.maps.Map(document.getElementById('dropoff_map'), {
+                center: { lat: 1.5645, lng: 103.6373 },
+                zoom: 14.7
+            });
+
+            var pickupLocationInput = document.getElementById('locationPU');
+            var dropoffLocationInput = document.getElementById('locationDO');
+
+            var pickupAutocomplete = new google.maps.places.Autocomplete(pickupLocationInput);
+            var dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffLocationInput);
+
+            pickupAutocomplete.bindTo('bounds', window.pickupMap);
+            dropoffAutocomplete.bindTo('bounds', window.dropoffMap);
+
+            pickupAutocomplete.addListener('place_changed', function () {
+                showLocationOnMap('pickup');
+            });
+
+            dropoffAutocomplete.addListener('place_changed', function () {
+                showLocationOnMap('dropoff');
+            });
+        }
+
+        function showLocationOnMap(type) {
+            var locationInput = type === 'pickup' ? document.getElementById('locationPU') : document.getElementById('locationDO');
+            var map = type === 'pickup' ? window.pickupMap : window.dropoffMap;
+            var geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({ 'address': locationInput.value }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var location = results[0].geometry.location;
+                    map.setCenter(location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    </script>
+
+    <!-- Load the Google Maps API only once -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ4VAT_LmNI0kKqUpPusyXa3BqYclROg&libraries=places&callback=initMap"></script>
+
 
 
 </body>
