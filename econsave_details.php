@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $id = $_GET["id"];
 
         if ($action === "complete") {
-            $updateSql = "UPDATE econsave_details SET status = 'completed' WHERE id = $id";
+            $updateSql = "UPDATE econsave_request SET status = 'completed' WHERE id = $id";
             if ($conn->query($updateSql) === TRUE) {
                 header("Location: completion_page.php?id=$id");
                 exit();
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 echo "Error updating record: " . $conn->error;
             }
         } elseif ($action === "incomplete") {
-            $updateSql = "UPDATE econsave_details SET status = 'pending' WHERE id = $id";
+            $updateSql = "UPDATE econsave_request SET status = 'pending' WHERE id = $id";
             if ($conn->query($updateSql) === TRUE) {
                 header("Location: incomplete_page.php?id=$id");
                 exit();
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 }
 
-$sql = "SELECT id, username_receiver, email, foodName, foodQuantity, status FROM econsave_details";
+$sql = "SELECT id, econsave_food, econsave_quantity, status FROM econsave_request";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
     echo "<head>";
     echo "<meta charset='UTF-8'>";
     echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    echo "<title>Econsave Details</title>";
+    echo "<title>Econsave Request Details</title>";
     echo "<style>";
     echo "body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -170,15 +170,13 @@ if ($result->num_rows > 0) {
 
     // Table Content
     echo "<table>";
-    echo "<tr><th>ID</th><th>Username Receiver</th><th>Email</th><th>Food Name</th><th>Food Quantity</th><th>Status</th><th>Actions</th></tr>";
+    echo "<tr><th>ID</th><th>Econsave Food</th><th>Econsave Quantity</th><th>Status</th><th>Actions</th></tr>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>{$row['id']}</td>";
-        echo "<td>{$row['username_receiver']}</td>";
-        echo "<td>{$row['email']}</td>";
-        echo "<td>{$row['foodName']}</td>";
-        echo "<td>{$row['foodQuantity']}</td>";
+        echo "<td>{$row['econsave_food']}</td>";
+        echo "<td>{$row['econsave_quantity']}</td>";
         echo "<td>{$row['status']}</td>";
         echo "<td>
                 <button class='complete-btn' onclick='completeRequest({$row["id"]})'>Complete</button>
@@ -207,6 +205,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
+
 
 
 
