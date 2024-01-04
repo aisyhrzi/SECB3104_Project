@@ -80,7 +80,7 @@
         <b>Select Your Role</b>
     </div>
     <div class="role-buttons">
-        <a href="#" class="role-button" onclick="selectRole('donor')">
+        <a href="donorselect.php" class="role-button" onclick="selectRole('donor')">
             <h3>Donor</h3>Donors play a pivotal role in reducing food waste by contributing surplus food. Their generosity helps address hunger and promotes sustainability. Each donation, big or small, contributes to creating a more equitable and waste-conscious society. <br> <br> <br> <br> <br> 
             <img src="donor.png" alt="Donor Image" style="width:250px;">
         </a>
@@ -88,7 +88,7 @@
             <h3>Receiver</h3>Receivers benefit directly from donated food, receiving support that alleviates food insecurity. By connecting donors with those in need, the receiver role ensures a more equitable distribution of resources, fostering community well-being and resilience.<br> <br> <br> 
             <img src="receiver.png" alt="Donor Image">
         </a>
-        <a href="#" class="role-button" onclick="selectRole('volunteer')">
+        <a href="dashboard_v.php" class="role-button" onclick="selectRole('volunteer')">
             <h3>Volunteer</h3>Volunteers play a crucial role in bridging the gap between donors and receivers. By dedicating their time and effort, volunteers contribute to the efficient functioning of the food distribution process, promoting a sense of solidarity and shared responsibility in the fight against food waste and hunger.
             <img src="volunteer.png" alt="Volunteer Image">
         </a>
