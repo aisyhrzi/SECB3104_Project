@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_id'])) {
 
     try {
         // Database connection
-        $db = new PDO('mysql:host=localhost;dbname=donorInfo', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=foodbank', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Update the database based on the submitted form data
