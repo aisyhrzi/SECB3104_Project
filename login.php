@@ -20,7 +20,7 @@ $dbname = "foodbank";
     $enteredPassword = $_POST['password'];
 
     // Use prepared statements to prevent SQL injection
-    $stmt = $conn->prepare("SELECT * FROM signup WHERE username = ?");
+    $stmt = $conn->prepare("SELECT * FROM details WHERE username = ?");
     $stmt->bind_param("s", $enteredUsername);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -244,7 +244,7 @@ $dbname = "foodbank";
 </head>
 <body>
     <nav>
-        <a href="#"><img src="logo.png" alt="logo"></a>
+        <a href="#"><img src="logocantik.png" alt="logo"></a>
     </nav>
     <div class="form-wrapper">
         <h2>Sign In</h2>
@@ -529,7 +529,7 @@ $dbname = "foodbank";
 </head>
 <body>
     <nav>
-        <a href="#"><img src="logo.png" alt="logo"></a>
+        <a href="#"><img src="logocantik.png" alt="logo"></a>
     </nav>
     <div class="form-wrapper">
         <h2>Sign In</h2>
