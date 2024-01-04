@@ -169,8 +169,8 @@
             <h2><p>Please select your role:</p></h2>
             <button onclick="window.location.href='donations.php'">Donor</button>
             <button onclick="window.location.href='adminPanel.php'">Admin</button>
-            <button onclick="window.location.href='receiver.php'">Receiver</button>
-            <button onclick="window.location.href='volunteer.php'">Volunteer</button>
+            <button onclick="window.location.href='receivers.php'">Receiver</button>
+            <button onclick="window.location.href='volunteers.php'">Volunteer</button>
         </div>
     </div>
 
