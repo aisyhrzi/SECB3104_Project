@@ -166,11 +166,11 @@
     <!-- Role Selection Form Container -->
     <div class="container">
         <div class="role-form">
-            <h2><p>Please select your role:</p></h2>
-            <button onclick="window.location.href='donations.php'">Donor</button>
-            <button onclick="window.location.href='adminPanel.php'">Admin</button>
-            <button onclick="window.location.href='receivers.php'">Receiver</button>
-            <button onclick="window.location.href='volunteers.php'">Volunteer</button>
+            <h2><p>What your want to do today?:</p></h2>
+            <button onclick="window.location.href='donations.php'">Donate food</button>
+            <button onclick="window.location.href='valids.php'">View Details</button>
+            <button onclick="window.location.href='receivers.php'">Pick up food</button>
+            <button onclick="window.location.href='volunteers.php'">Helps distribute</button>
         </div>
     </div>
 
