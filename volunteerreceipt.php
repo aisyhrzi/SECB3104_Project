@@ -14,13 +14,14 @@ if ($conn->connect_error) {
 }
 
 // Fetch data from the volunteer_requests table
-$sql = "SELECT id, email, time, shoplocation FROM volunteer_requests ORDER BY id DESC LIMIT 1";
+$sql = "SELECT id, email, time, shoplocation, droplocation FROM volunteer_requests ORDER BY id DESC LIMIT 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $rawTime = $row['time'];
     $shoplocation = $row['shoplocation'];
+    $droplocation = $row['droplocation'];
     $email = $row['email'];
 
     // Convert raw time to a user-friendly format (e.g., from '08:00' to '8:00 AM')
@@ -146,14 +147,17 @@ $conn->close();
                 <div class="receipt-form">
                     <h3>Volunteer Request Receipt</h3>
                     <!-- Display time range, location, and note here -->
-                    <label for="time">Time Range:</label>
+                    <b><label for="time">Time Range:</label></b>
                     <p><?php echo $time; ?></p>
 
-                    <label for="shoplocation">Location:</label>
+                    <b><label for="shoplocation">Pickup Location:</label></b>
                     <p><?php echo $shoplocation; ?></p>
 
-                    <label for="note">Note:</label>
-                    <p>Confirmation email has been sent to <?php echo $email; ?></p>
+                    <b><label for="droplocation">Drop-Off Location:</label></b>
+                    <p><?php echo $droplocation; ?></p>
+
+                    <b><label for="note">Note:</label></b>
+                    <b><p>Confirmation email has been sent to </b><?php echo $email; ?></p>
 
                     <button onclick="window.location.href='dashboard.php'">Back to Dashboard</button>
                 </div>
