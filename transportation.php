@@ -53,20 +53,16 @@ if ($conn->connect_error) {
     $droplocation = $_GET['droplocation'] ?? '';
     $currentDate = $_GET['currentDate'] ?? '';
 
-// Fetch the username from the details table
-$username = ''; // Set a default value
+    session_start();
 
-$detailsQuery = "SELECT username FROM details LIMIT 1"; // Assuming you want only one username
-$detailsResult = $conn->query($detailsQuery);
-
-if ($detailsResult === FALSE) {
-    die("Error in details query: " . $conn->error);
-}
-
-if ($detailsResult->num_rows > 0) {
-    $detailsRow = $detailsResult->fetch_assoc();
-    $username = $detailsRow['username'];
-}
+    // Check if the user is logged in, if not, redirect to the login page
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.php");
+        exit();
+    }
+    
+    // Fetch the username from the session
+    $username = $_SESSION['username'];
 
 ?>
     <div class="topnav">
