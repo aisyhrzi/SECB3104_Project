@@ -10,3 +10,21 @@ function displayInfoRec() {
     xhr.open("GET", "display_request.php", true);
     xhr.send();
 }
+
+function scheduleInfo(id, email, time, shoplocation, droplocation) {
+    // Redirect to transportation.php with parameters
+    window.location.href = 'transportation.php?id=' + id +
+        '&email=' + encodeURIComponent(email) +
+        '&time=' + encodeURIComponent(time) +
+        '&shoplocation=' + encodeURIComponent(shoplocation) +
+        '&droplocation=' + encodeURIComponent(droplocation) +
+        '&currentDate=' + encodeURIComponent(getCurrentDate());
+}
+
+function getCurrentDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var yyyy = today.getFullYear();
+    return yyyy + '-' + mm + '-' + dd;
+}

@@ -29,6 +29,37 @@
 </head>
 <body>
 
+<?php
+// Establish a database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "foodbank"; // Update to your existing database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch the username from the details table
+$username = ''; // Set a default value
+
+$detailsQuery = "SELECT username FROM details LIMIT 1"; // Assuming you want only one username
+$detailsResult = $conn->query($detailsQuery);
+
+if ($detailsResult === FALSE) {
+    die("Error in details query: " . $conn->error);
+}
+
+if ($detailsResult->num_rows > 0) {
+    $detailsRow = $detailsResult->fetch_assoc();
+    $username = $detailsRow['username'];
+}
+
+?>
+
 <div class="topnav">
     <a href="dashboard_v.php" class="btn">Home</a>
     <a id="homeLink" href="#home" class="active" onclick="handleClick(this)">Weekly Distribution</a>
@@ -43,9 +74,11 @@
 
     <div class="container">
         <form action="process_weekly_distribution.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+             <!-- Display username as non-editable text -->
             <div class="form-group">
-                <label for="name">Volunteer Name:</label>
-                <input type="name" name="name" required>
+                <label for="name">Volunteer Name (Username):</label>
+                <input type="text" id="name" name="name" value="<?php echo $username; ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="date">Date:</label>

@@ -62,7 +62,7 @@
     <a id="displayButtonT" onclick="displayInfoT(); handleClick(this)">🚚 Transportation Schedule</a>
     <a id="displayButtonH" onclick="displayInfoH(); handleClick(this)">🕰️ History</a> <!-- Update ID here -->
     <a id="displayButtonRec" onclick="displayInfoRec(); handleClick(this)">📦 Receiver Notification</a>
-    <a href="login.php" id="logoutButton" onclick="handleLogout()">🚪 Logout</a>
+    <a href="login.php" id="logoutButton" onclick="return handleLogout()">🚪 Logout</a>
 </div>
 
 <div id="infoDisplay"></div>
@@ -117,18 +117,20 @@
         // Add the 'active' class to the clicked link
         clickedElement.classList.add('active');
     }
+
     function handleLogout() {
     // Display a confirmation dialog
     var isConfirmed = confirm("We're sad to see you go. Are you sure you want to logout?");
 
-    // If the user confirms, redirect to login.php
-    if (isConfirmed) {
-        // You can add additional logic here if needed before redirecting to login.php
-        // For example, clearing user session data, etc.
-        // Redirect to login.php
-        window.location.href = "login.php";
+    // If the user cancels, prevent the default action of the anchor element (redirect)
+    if (!isConfirmed) {
+        return false;
     }
-    // If the user cancels, do nothing
+
+    // If the user confirms, redirect to login.php
+    // You can add additional logic here if needed before redirecting to login.php
+    // For example, clearing user session data, etc.
+    window.location.href = "login.php";
 }
     </script>
 </body>

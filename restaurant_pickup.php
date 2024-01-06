@@ -29,6 +29,36 @@
 </head>
 <body>
 
+<?php
+// Establish a database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "foodbank"; // Update to your existing database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch the username from the details table
+$username = ''; // Set a default value
+
+$detailsQuery = "SELECT username FROM details LIMIT 1"; // Assuming you want only one username
+$detailsResult = $conn->query($detailsQuery);
+
+if ($detailsResult === FALSE) {
+    die("Error in details query: " . $conn->error);
+}
+
+if ($detailsResult->num_rows > 0) {
+    $detailsRow = $detailsResult->fetch_assoc();
+    $username = $detailsRow['username'];
+}
+?>
+
 <div class="topnav">
     <a href="dashboard_v.php" class="btn">Home</a>
     <a id="homeLink" href="#home" class="active" onclick="handleClick(this)">Restaurant Pick-up</a>
@@ -43,9 +73,10 @@
 
     <div class="container">
         <form action="process_restaurant_pickup.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="form-group">
-                <label for="name">Volunteer Name:</label>
-                <input type="name" name="name" required>
+                <label for="name">Volunteer Name (Username):</label>
+                <input type="text" id="name" name="name" value="<?php echo $username; ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="date">Date:</label>
@@ -56,11 +87,12 @@
                 <input type="time" name="time" required>
             </div>
             <div class="form-group">
-    <label for="restaurant_location">Restaurant Location:</label>
-    <input type="text" id="restaurant_location" name="restaurant_location" required>
-    <button type="button" onclick="showLocationOnMap()">Show on Map</button>
-    <div id="restaurant_map"></div>
-</div>
+                <label for="restaurant_location">Restaurant Location:</label>
+                <input type="text" id="restaurant_location" name="restaurant_location" required>
+                <button type="button" onclick="showLocationOnMap()">Show on Map</button>
+                <div id="restaurant_map"></div>
+             </div>
+            </div>
             <input type="submit" class="btn" value="Schedule Pick-Up">
         </form>
     </div>
@@ -68,6 +100,13 @@
     <div class="footer">
         <p></p>
     </div>
+
+    <script>
+    // Function to set the restaurant_location input value
+        function setRestaurantLocation(address) {
+            document.getElementById('restaurant_location').value = address;
+        }
+    </script>
 
     <script>
     function handleClick(clickedElement) {
@@ -130,6 +169,14 @@
             }
         });
     }
+
+    // Get the address from the URL parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var donorAddress = urlParams.get('donorAddress');
+
+    // Set the restaurant_location input value
+    setRestaurantLocation(donorAddress);
+
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ4VAT_LmNI0kKqUpPusyXa3BqYclROg&libraries=places&callback=initRestaurantMap"></script>
 </script>

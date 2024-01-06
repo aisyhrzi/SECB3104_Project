@@ -32,13 +32,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO distribution_events_t (name, date, time, locationPU, locationDO) VALUES ('$name', '$date', '$time', '$locationPU', '$locationDO')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Distribution event scheduled successfully.";
-        // Add buttons for returning to home and rescheduling
-        echo '<br>';
-        echo '<a href="dashboard_v.php">Return to Home</a>';
-        echo '&nbsp;&nbsp;';
-        echo '<a href="transportation.php">Reschedule</a>';
+        // Success message
+        $successMessage = "Distribution event scheduled successfully.";
+        echo '<script>';
+        echo 'function showMessage() {';
+        echo '  var userResponse = confirm("' . $successMessage . '");';
+        echo '  if (userResponse) {';
+        echo '    window.location.href = "dashboard_v.php";'; // Redirect to home
+        echo '  } else {';
+        echo '    window.location.href = "transportation.php";'; // Redirect to reschedule
+        echo '  }';
+        echo '}';
+        echo '</script>';
+        
+        // Trigger the JavaScript function on page load
+        echo '<script>';
+        echo 'window.onload = function() {';
+        echo '  showMessage();';
+        echo '}';
+        echo '</script>';
     } else {
+        // Error message
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
