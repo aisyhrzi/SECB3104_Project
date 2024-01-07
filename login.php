@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Replace these credentials with your actual database credentials

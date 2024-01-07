@@ -100,44 +100,34 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Retrieve user details from the database
-    $result = $conn->query("SELECT * FROM signup WHERE id = $id");
+    // Retrieve donation details from the UserDetails table
+    $result = $conn->query("SELECT * FROM UserDetails WHERE id = $id");
 
     if ($result->num_rows > 0) {
-        $rowdetails = $result->fetch_assoc();
-
-        // Fetch additional details from the userdetails table
-        $result = $conn->query("SELECT * FROM userdetails WHERE id = $id");
-
-        if ($result->num_rows > 0) {
-            $rowuser = $result->fetch_assoc();
+        $rowuser = $result->fetch_assoc();
     ?>
-            <!-- Your receipt HTML with dynamic data -->
-            <div class="receipt-container">
-                <img src="https://i.pinimg.com/736x/fc/46/f5/fc46f5d96252f22b456ec4b81298398c.jpg" alt="Logo" class="logo">
-                <h2>Donation Invoice Receipt</h2>
-                <div class="bill-details">
-                    <p><strong>Date:</strong> <span id="current-date"></span></p>
-                    <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
-                </div>
-                <div class="thank-you">Thank you for your donation!</div>
-                <p class="donor-name"><?php echo $rowdetails["first_name"] . " " . $rowdetails["last_name"]; ?></p>
-
-                <!-- Add this part to display userdetails -->
-                <p>Your generous contribution will make a difference.</p>
-                <p class="amount-details"><strong>Amount:</strong> $<?php echo number_format($rowuser["donate"], 2); ?></p>
-
-                <!-- Rest of your receipt HTML -->
-
-                <a href="paymentgetaway.php?id=<?php echo $id; ?>&donate=<?php echo $rowuser['donate']; ?>" class="back-to-home">Proceed to Payment</a>
+        <!-- Your receipt HTML with dynamic data -->
+        <div class="receipt-container">
+            <img src="https://i.pinimg.com/736x/fc/46/f5/fc46f5d96252f22b456ec4b81298398c.jpg" alt="Logo" class="logo">
+            <h2>Donation Invoice Receipt</h2>
+            <div class="bill-details">
+                <p><strong>Date:</strong> <span id="current-date"></span></p>
+                <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
             </div>
+            <div class="thank-you">Thank you for your donation!</div>
+
+            <!-- Add this part to display UserDetails -->
+            <p>Your generous contribution will make a difference.</p>
+            <p class="amount-details"><strong>Amount:</strong> $<?php echo number_format($rowuser["donate"], 2); ?></p>
+
+            <!-- Rest of your receipt HTML -->
+
+            <a href="paymentgetaway.php?id=<?php echo $id; ?>&donate=<?php echo $rowuser['donate']; ?>" class="back-to-home">Proceed to Payment</a>
+        </div>
 
     <?php
-        } else {
-            echo "User details not found.";
-        }
     } else {
-        echo "User not found.";
+        echo "Donation details not found.";
     }
 
     $conn->close();
@@ -152,11 +142,10 @@
         };
         document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', options);
 
-// JavaScript to generate a random transaction ID
-const transactionId = Math.random().toString(36).substr(2, 10);
-document.getElementById('transaction-id').textContent = transactionId;
-</script>
+        // JavaScript to generate a random transaction ID
+        const transactionId = Math.random().toString(36).substr(2, 10);
+        document.getElementById('transaction-id').textContent = transactionId;
+    </script>
 </body>
 
 </html>
-
