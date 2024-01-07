@@ -97,34 +97,3 @@ chart.render();
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </body>
 </html>            
-<h3>Donations Overview</h3>
-            <p>
-                <?php 
-               $servername = "localhost";
-               $username = "root";
-               $password = "";
-               $dbname = "foodbank";
-
-                $conn = new mysqli($servername, $username, $password, $dbname); 
-
-                if ($conn->connect_error) { 
-                    die("Connection failed: " . $conn->connect_error); 
-                } 
-
-                $result = $conn->query(" 
-                    SELECT SUM(donate) as total_donation 
-                    FROM UserDetails 
-                "); 
-
-                if ($result->num_rows > 0) { 
-                    while ($row = $result->fetch_assoc()) { 
-                        echo "RM" . number_format($row["total_donation"], 2); 
-                    } 
-                } else { 
-                    echo "No donations found"; 
-                } 
-
-                $conn->close(); 
-                ?>
-            </p>
-        </div>
