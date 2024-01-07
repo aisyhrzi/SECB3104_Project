@@ -29,6 +29,19 @@
 </head>
 <body>
 
+<?php
+session_start();
+
+// Check if the user is logged in, if not, redirect to the login page
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Fetch the username from the session
+$username = $_SESSION['username'];
+?>
+
 <div class="topnav">
     <a href="dashboard_v.php" class="btn">Home</a>
     <a id="homeLink" href="#home" class="active" onclick="handleClick(this)">Weekly Distribution</a>
@@ -43,9 +56,11 @@
 
     <div class="container">
         <form action="process_weekly_distribution.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+             <!-- Display username as non-editable text -->
             <div class="form-group">
-                <label for="name">Volunteer Name:</label>
-                <input type="name" name="name" required>
+                <label for="name">Volunteer Name (Username):</label>
+                <input type="text" id="name" name="name" value="<?php echo $username; ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="date">Date:</label>

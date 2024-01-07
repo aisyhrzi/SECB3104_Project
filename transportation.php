@@ -31,7 +31,40 @@
 </head>
 
 <body>
+<?php
+// Establish a database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "foodbank"; // Update to your existing database name
 
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+    // Retrieve information from URL parameters
+    $id = $_GET['id'] ?? '';
+    $email = $_GET['email'] ?? '';
+    $time = $_GET['time'] ?? '';
+    $shoplocation = $_GET['shoplocation'] ?? '';
+    $droplocation = $_GET['droplocation'] ?? '';
+    $currentDate = $_GET['currentDate'] ?? '';
+
+    session_start();
+
+    // Check if the user is logged in, if not, redirect to the login page
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.php");
+        exit();
+    }
+    
+    // Fetch the username from the session
+    $username = $_SESSION['username'];
+
+?>
     <div class="topnav">
         <a href="dashboard_v.php" class="btn">Home</a>
         <a id="homeLink" href="#home" class="active" onclick="handleClick(this)">Transportation</a>
@@ -46,27 +79,35 @@
 
     <div class="container">
         <form action="process_transportation.php" method="post">
-            <div class="form-group">
-                <label for="name">Volunteer Name:</label>
-                <input type="name" name="name" required>
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+ <!-- Display username as non-editable text -->
+ <div class="form-group">
+                <label for="name">Volunteer Name (Username):</label>
+                <input type="text" id="name" name="name" value="<?php echo $username; ?>" readonly>
             </div>
-            <div class="form-group">
-                <label for="date">Date:</label>
-                <input type="date" name="date" required>
-            </div>
-            <div class="form-group">
-                <label for="time">Time:</label>
-                <input type="time" name="time" required>
-            </div>
-            <div class="form-group">
-                <label for="pickup_location">Pick-Up Location:</label>
-                <input type="text" id="locationPU" name="locationPU" required>
+
+<div class="form-group">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" value="<?php echo $currentDate; ?>" required>
+</div>
+<div class="form-group">
+    <label for="existingTime">Approximate Time:</label>
+    <p id="existingTime"><?php echo $time; ?></p>
+</div>
+<div class="form-group">
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" value="<?php echo $time; ?>" required>
+</div>
+<div class="form-group">
+    <label for="locationPU">Pick-Up Location:</label>
+    <input type="text" id="locationPU" name="locationPU" value="<?php echo $shoplocation; ?>" required>
                 <button type="button" onclick="showLocationOnMap('pickup')">Show on Map</button>
                 <div id="pickup_map"></div>
             </div>
             <div class="form-group">
-                <label for="dropoff_location">Drop-Off Location:</label>
-                <input type="text" id="locationDO" name="locationDO" required>
+    <label for="locationDO">Drop-Off Location:</label>
+    <input type="text" id="locationDO" name="locationDO" value="<?php echo $droplocation; ?>" required>
                 <button type="button" onclick="showLocationOnMap('dropoff')">Show on Map</button>
                 <div id="dropoff_map"></div>
             </div>

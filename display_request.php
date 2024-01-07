@@ -20,13 +20,14 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo "<div id='infoDisplay'>"; // Add a container div
     echo "<table border='1'>";
-    echo "<tr><th>Reciever Email</th><th>Time</th><th>Pickup Location</th><th>Drop-Off Location</th>";
+    echo "<tr><th>Reciever Email</th><th>Time</th><th>Pickup Location</th><th>Drop-Off Location</th><th colspan='2' >Pending</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["email"] . "</td>";
         echo "<td>" . $row["time"] . "</td>";
         echo "<td>" . $row["shoplocation"] . "</td>";
         echo "<td>" . $row["droplocation"] . "</td>";
+        echo '<td><button onclick="scheduleInfo(' . $row['id'] . ', \'' . $row['email'] . '\', \'' . $row['time'] . '\', \'' . $row['shoplocation'] . '\', \'' . $row['droplocation'] . '\')">Schedule</button></td>';
         echo "</tr>";
     }
     echo "</table>";
