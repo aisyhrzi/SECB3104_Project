@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Distribution</title>
+    <title>Receiver Distribution</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -119,13 +119,15 @@
             width: 100%;
             margin: 20px 0;
             color: #333;
+            border: 1px solid #add8e6; /* Change border color to light blue */
         }
 
-        table, th, td {
-            border: 1px solid #ddd;
+        tr {
+            border-bottom: 1px solid #add8e6; /* Change border color to light blue */
         }
 
         th, td {
+            border: 1px solid #add8e6; /* Change border color to light blue */
             padding: 10px;
             text-align: left;
         }
@@ -188,7 +190,7 @@
     <!-- Placeholder content -->
     <div class="content">
         <?php
-        // Fetch data of users who selected volunteer distribution option
+        // Fetch data of users who selected pickup distribution option
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -215,12 +217,12 @@
                 echo "<td class='name-email-column'>$donorName</td>";
                 echo "<td class='name-email-column'>$donorEmail</td>";
                 echo "<td>$donorAddress</td>";
-                echo "<td><button onclick='acceptAction(\"$donorName\")'>Accept</button></td>";
+                echo "<td><button onclick='acceptAction(\"$donorAddress\")'>View</button></td>";
                 echo "</tr>";
             }
             echo "</table>";
         } else {
-            echo "<p>No volunteer distribution information available.</p>";
+            echo "<p>No Pickup information available.</p>";
         }
 
         $conn->close();
@@ -229,13 +231,13 @@
     <!-- End of placeholder content -->
 
     <script>
-        function acceptAction(donorName) {
-            window.location.href = "volunteer_details.php?donorName=" + encodeURIComponent(donorName);
+        function acceptAction(donorAddress) {
+            window.location.href = "volunteer_details.php?donorAddress=" + encodeURIComponent(donorAddress);
         }
     </script>
 </body>
 
-</html>
+
 
 
 

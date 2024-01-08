@@ -217,7 +217,7 @@
                 echo "<td class='name-email-column'>$donorName</td>";
                 echo "<td class='name-email-column'>$donorEmail</td>";
                 echo "<td>$donorAddress</td>";
-                echo "<td><button onclick='acceptAction(\"$donorName\")'>View</button></td>";
+                echo "<td><button onclick='acceptAction(\"$donorAddress\")'>View</button></td>";
                 echo "</tr>";
             }
             echo "</table>";
@@ -231,8 +231,8 @@
     <!-- End of placeholder content -->
 
     <script>
-        function acceptAction(donorName) {
-            window.location.href = "receiver_details.php?donorName=" + encodeURIComponent(donorName);
+        function acceptAction(donorAddress) {
+            window.location.href = "receiver_details.php?donorAddress=" + encodeURIComponent(donorAddress);
         }
     </script>
 </body>

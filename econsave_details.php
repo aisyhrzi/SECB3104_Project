@@ -23,14 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             } else {
                 echo "Error updating record: " . $conn->error;
             }
-        } elseif ($action === "incomplete") {
-            $updateSql = "UPDATE econsave_request SET status = 'pending' WHERE id = $id";
-            if ($conn->query($updateSql) === TRUE) {
-                header("Location: incomplete_page.php?id=$id");
-                exit();
-            } else {
-                echo "Error updating record: " . $conn->error;
-            }
         }
     }
 }
@@ -180,7 +172,6 @@ if ($result->num_rows > 0) {
         echo "<td>{$row['status']}</td>";
         echo "<td>
                 <button class='complete-btn' onclick='completeRequest({$row["id"]})'>Complete</button>
-                <button class='incomplete-btn' onclick='incompleteRequest({$row["id"]})'>Incomplete</button>
               </td>";
         echo "</tr>";
     }
@@ -190,10 +181,6 @@ if ($result->num_rows > 0) {
     echo "<script>
             function completeRequest(id) {
                 window.location.href = 'econsave_details.php?action=complete&id=' + id;
-            }
-
-            function incompleteRequest(id) {
-                window.location.href = 'econsave_details.php?action=incomplete&id=' + id;
             }
         </script>";
 
@@ -205,6 +192,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
+
 
 
 

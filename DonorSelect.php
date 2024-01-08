@@ -171,6 +171,8 @@
             <button onclick="window.location.href='valids.php'">View Details</button>
             <button onclick="window.location.href='receivers.php'">Pick up food</button>
             <button onclick="window.location.href='volunteers.php'">Helps distribute</button>
+            <button onclick="window.location.href='valids2.php'">View Status</button>
+
         </div>
     </div>
 
