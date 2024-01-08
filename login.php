@@ -270,7 +270,8 @@ $dbname = "foodbank";
                 <a href="#">Need help?</a>
             </div>
         </form>
-        <p>New to FoodBank.My? <a href="signup.php">Sign up now</a></p>
+        <p>New to FoodBank.My? <a href="signup.php">NOW</a></p>
+       
         <small>
             This page is protected by Google reCAPTCHA to ensure you're not a bot. 
             <a href="#">Learn more.</a>
