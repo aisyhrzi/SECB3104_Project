@@ -137,20 +137,23 @@
                                     die("Connection failed: " . $conn->connect_error);
                                 }
 
-                                // SQL query to retrieve food items from the database
-                                $sql = "SELECT foodName FROM donordetails";
-                                $result = $conn->query($sql);
+                                // SQL query to retrieve food items and expiry date from the database
+$sql = "SELECT foodName, foodExpiryDate FROM donordetails";
+$result = $conn->query($sql);
 
-                                // Populate the dropdown with retrieved data
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="' . $row['foodName'] . '">' . $row['foodName'] . '</option>';
-                                }
+// Populate the dropdown with retrieved data
+while ($row = $result->fetch_assoc()) {
+    echo '<option value="' . $row['foodName'] . '" data-expiry-date="' . $row['foodExpiryDate'] . '">' . $row['foodName'] . '</option>';
+}
+
+
 
                                 // Close the database connection
                                 $conn->close();
                             ?>
                         </select>
                         <label for="quantity">Quantity Available: <span id="quantity">0</span></label>
+                        <label for="best_before">Best Before: <span id="best_before">N/A</span></label>
                         <label for="quantity_select">Select Quantity:</label>
                         <select id="quantity_select" name="quantity">
                             <option value="1">1</option>
@@ -188,23 +191,37 @@
     }
 
     function updateQuantity() {
-        var foodName = document.getElementById("food_item").value;
+    var foodName = document.getElementById("food_item").value;
 
-        // Make an AJAX request to get_quantity.php
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "get_quantity.php?food_item=" + encodeURIComponent(foodName), true);
+    // Make an AJAX request to get_quantity.php
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "get_quantity.php?food_item=" + encodeURIComponent(foodName), true);
 
-        // Define the function to handle the response
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // Update the quantity based on the response
-                document.getElementById("quantity").innerText = xhr.responseText;
-            }
-        };
+    // Define the function to handle the response
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Update the quantity based on the response
+            document.getElementById("quantity").innerText = xhr.responseText;
 
-        // Send the request
-        xhr.send();
-    }
+            // Update the "Best Before" based on the selected food item
+            var bestBeforeSpan = document.getElementById("best_before");
+            bestBeforeSpan.innerText = getBestBeforeDate(foodName);
+        }
+    };
+
+    // Send the request
+    xhr.send();
+}
+
+// Function to get the "Best Before" date from the selected food item
+function getBestBeforeDate(foodName) {
+    var select = document.getElementById("food_item");
+    var selectedOption = select.options[select.selectedIndex];
+    return selectedOption.getAttribute("data-expiry-date") || "N/A";
+}
+
+
+
 
     document.addEventListener("DOMContentLoaded", function () {
         // Add a submit event listener to the form
