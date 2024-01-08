@@ -107,11 +107,12 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
             text-align: left;
         }
 
@@ -132,6 +133,12 @@
 
         .edit-button:hover, .delete-button:hover {
             background-color: #2980b9;
+        }
+
+        @media (max-width: 600px) {
+            th, td {
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -182,30 +189,8 @@
             $db = new PDO('mysql:host=localhost;dbname=foodbank', 'root', '');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Handle delete action
-            if (isset($_POST['delete_id'])) {
-                $deleteId = $_POST['delete_id'];
-
-                // Display confirmation alert
-                echo "
-                    <script>
-                        var confirmDelete = confirm('Are you sure you want to delete this record?');
-
-                        if (confirmDelete) {
-                            window.location.href = 'adminPanel.php?confirm_delete_id=$deleteId';
-                        }
-                    </script>
-                ";
-            }
-
-            // Confirm and execute deletion
-            if (isset($_GET['confirm_delete_id'])) {
-                $deleteId = $_GET['confirm_delete_id'];
-                $deleteQuery = "DELETE FROM donorDetails WHERE id = :id";
-                $deleteStmt = $db->prepare($deleteQuery);
-                $deleteStmt->bindParam(':id', $deleteId, PDO::PARAM_INT);
-                $deleteStmt->execute();
-            }
+            // Define the column labels
+            $columnLabels = array('ID', 'Donor Name', 'Donor Email', 'Donor Phone', 'Donor Address', 'Food Name', 'Food Quantity', 'Food Expiry Date', 'Pickup Option');
 
             // Fetch all records from the database
             $query = "SELECT * FROM donorDetails";
@@ -215,12 +200,15 @@
             if ($records) {
                 echo "<div class='table-container'>";
                 echo "<table>";
+
+                // Generate table headers dynamically
                 echo "<tr>";
-                foreach ($records[0] as $columnName => $value) {
-                    echo "<th>" . htmlspecialchars($columnName) . "</th>";
+                foreach ($columnLabels as $label) {
+                    echo "<th>" . htmlspecialchars($label) . "</th>";
                 }
                 echo "<th>Action</th></tr>";
 
+                // Generate table rows dynamically
                 foreach ($records as $record) {
                     echo "<tr id='row-" . $record['id'] . "'>";
                     foreach ($record as $value) {
@@ -235,6 +223,7 @@
                     echo "</td>";
                     echo "</tr>";
                 }
+
                 echo "</table>";
                 echo "</div>";
             } else {
@@ -278,6 +267,7 @@
 </body>
 
 </html>
+
 
 
 

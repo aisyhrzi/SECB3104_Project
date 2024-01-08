@@ -29,12 +29,21 @@
             color: #007BFF;
         }
 
-        p {
-            margin-bottom: 10px;
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
         }
 
-        strong {
-            font-weight: bold;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
         }
 
         p, button {
@@ -72,29 +81,44 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['donorName'])) {
-        $donorName = $_GET['donorName'];
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['donorAddress'])) {
+        $donorAddress = $_GET['donorAddress'];
 
-        $query = "SELECT * FROM donorDetails WHERE donorName = ?";
+        $query = "SELECT * FROM donorDetails WHERE donorAddress = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $donorName);
+        $stmt->bind_param("s", $donorAddress);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             echo "<div class='container'>";
-            while ($row = $result->fetch_assoc()) {
-                echo "<h1>Restaurant details</h1>";
-                echo "<p><strong>Name:</strong> " . htmlspecialchars($row['donorName']) . "</p>";
-                echo "<p><strong>Email:</strong> " . htmlspecialchars($row['donorEmail']) . "</p>";
-                echo "<p><strong>Address:</strong> " . htmlspecialchars($row['donorAddress']) . "</p>";
-                echo "<p><strong>Food Name:</strong> " . htmlspecialchars($row['foodName']) . "</p>";
-                echo "<p><strong>Food Quantity:</strong> " . htmlspecialchars($row['foodQuantity']) . "</p>";
-                // Display other information as needed
+            echo "<h1>Restaurant details</h1>";
+            echo "<table>";
+            $headerPrinted = false;
 
-                
-                echo "<button onclick='selectAction(\"" . htmlspecialchars($row['donorName']) . "\")'>Select</button>";
+            while ($row = $result->fetch_assoc()) {
+                if (!$headerPrinted) {
+                    // Print table headers
+                    echo "<tr>";
+                    foreach ($row as $key => $value) {
+                        echo "<th>" . htmlspecialchars($key) . "</th>";
+                    }
+                    echo "<th>Action</th></tr>";
+                    $headerPrinted = true;
+                }
+
+                // Print table rows
+                echo "<tr>";
+                foreach ($row as $value) {
+                    echo "<td>" . htmlspecialchars($value) . "</td>";
+                }
+                echo "<td>";
+                echo "<button onclick='selectAction(\"" . htmlspecialchars($row['donorAddress']) . "\")'>Select</button>";
+                echo "</td>";
+                echo "</tr>";
             }
+
+            echo "</table>";
             echo "</div>";
         } else {
             echo "<p>No details found for the selected user.</p>";
@@ -109,8 +133,8 @@
     ?>
 
     <script>
-        function selectAction(donorName) {
-            window.location.href = "shop.php?donorName=" + encodeURIComponent(donorName);
+        function selectAction(donorAddress) {
+            window.location.href = "shop.php?donorAddress=" + encodeURIComponent(donorAddress);
         }
     </script>
 </body>

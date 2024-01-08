@@ -76,6 +76,7 @@
             echo "<p><strong>Address:</strong> " . htmlspecialchars($row['donorAddress']) . "</p>";
             echo "<p><strong>Food Name:</strong> " . htmlspecialchars($row['foodName']) . "</p>";
             echo "<p><strong>Quantity:</strong> " . htmlspecialchars($row['foodQuantity']) . "</p>";
+            echo "<p><strong>Food Expiry Date:</strong> " . htmlspecialchars($row['foodExpiryDate']) . "</p>";
             echo "<p><strong>Pickup Option:</strong> " . htmlspecialchars($row['pickupOption']) . "</p>";
 
             // Display the "Send Thank You" button
