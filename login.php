@@ -531,7 +531,7 @@ $dbname = "foodbank";
 </head>
 <body>
     <nav>
-        <a href="#"><img src="logo.png" alt="logo"></a>
+        <a href="#"><img src="logocantik.png" alt="logo" ></a>
     </nav>
     <div class="form-wrapper">
         <h2>Sign In</h2>
