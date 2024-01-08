@@ -47,7 +47,9 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-image: url("https://www.zdnet.com/a/img/resize/7928be58006d42770318cb8b31ab52fe25e1345e/2022/10/27/0089a944-0148-4741-a449-9607bf810e2a/gettyimages-1125756387.jpg?auto=webp&width=1280"); /* Replace 'background-image.jpg' with the path to your image */
+            background-size: cover;
+            background-position: center;
             margin: 0;
             display: flex;
             align-items: center;
@@ -56,11 +58,16 @@ $conn->close();
         }
 
         form {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 1); /* Semi-transparent white background for better readability */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
         }
 
         label {
@@ -88,11 +95,33 @@ $conn->close();
         button:hover {
             background-color: #45a049;
         }
+
+        /* Additional Styles for Improved Interface */
+        label {
+            font-weight: bold;
+        }
+
+        input[type="password"] {
+            margin-bottom: 8px;
+        }
+
+        button {
+            margin-top: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 400px) {
+            form {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <h2>Sign Up</h2>
+    
     <label for="first_name">First Name:</label>
     <input type="text" id="first_name" name="first_name" required>
 

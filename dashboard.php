@@ -261,7 +261,7 @@
             </div>
             <div class="user-profile-dropdown">
     <button class="user-profile" onclick="confirmLogout()">
-        <span>Hi Aisyah</span>
+        <span>Hi</span>
         <!-- Add a down arrow icon -->
         <span>&#9660;</span>
     </button>
