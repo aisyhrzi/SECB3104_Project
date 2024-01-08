@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         input[type="submit"] {
-            background-color: #007BFF;
+            background-color:#5cb85c;
             color: white;
             padding: 15px;
             border: none;
@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: green;
         }
 
         .donation-option {
@@ -203,7 +203,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #007BFF;
+            background-color:#5cb85c;
+;
             color: white;
             text-align: center;
             line-height: 50px;
@@ -231,7 +232,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 24px;
             color: black;
-            border-bottom: 2px solid #007BFF;
+            border-bottom: 2px solid#5cb85c;
+
             padding-bottom: 10px;
             margin-bottom: 20px;
         }

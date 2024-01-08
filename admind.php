@@ -23,9 +23,18 @@ $sqlVolunteerCount = "SELECT COUNT(*) as volunteerCount FROM donorDetails WHERE 
 $resultVolunteerCount = mysqli_query($conn, $sqlVolunteerCount);
 $rowVolunteerCount = mysqli_fetch_assoc($resultVolunteerCount);
 $volunteerCount = $rowVolunteerCount['volunteerCount'];
+$result = $conn->query("SELECT SUM(foodQuantity) as total_food FROM donorDetails");
 
-mysqli_close($conn);
+if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $totalDonation =  number_format($row["total_food"]);
+} else {
+    $totalDonation = "No food had been donate ";
+}
+
+$conn->close();
 ?>
+
                     
                    
 <!DOCTYPE html>
@@ -209,7 +218,9 @@ mysqli_close($conn);
                 <section class="service-section">
                     <br>
                     <h2>Donor Distribution Overview</h2>
+                  <h3>  The cumulative sum of availabilty donated food items : <?php echo $totalDonation; ?></h3>
                     <div class="service-section-header">
+               
                         <div class="search-field">
                             <i class="ph-magnifying-glass"></i>
                         </div>
