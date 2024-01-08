@@ -75,7 +75,6 @@ $username = $_SESSION['username'];
                 <button type="button" onclick="showLocationOnMap()">Show on Map</button>
                 <div id="restaurant_map"></div>
              </div>
-            </div>
             <input type="submit" class="btn" value="Schedule Pick-Up">
         </form>
     </div>
@@ -161,8 +160,24 @@ $username = $_SESSION['username'];
     setRestaurantLocation(donorAddress);
 
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ4VAT_LmNI0kKqUpPusyXa3BqYclROg&libraries=places&callback=initRestaurantMap"></script>
+
+<script>
+    // Function to set the restaurant_location input value
+    function setRestaurantLocation(address) {
+        document.getElementById('restaurant_location').value = address;
+    }
 </script>
+
+<script>
+    // Get the donorAddress from the URL parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var donorAddress = urlParams.get('donorAddress');
+
+    // Set the restaurant_location input value
+    setRestaurantLocation(donorAddress);
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlZ4VAT_LmNI0kKqUpPusyXa3BqYclROg&libraries=places&callback=initRestaurantMap"></script>
 
 </body>
 </html>

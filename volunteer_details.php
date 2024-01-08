@@ -132,12 +132,11 @@
     $conn->close();
     ?>
 
-    <script>
-        function selectAction(donorAddress) {
-            window.location.href = "restaurant_pickup.php?donorAddres=" + encodeURIComponent(donorAddress);
-        }
-    </script>
+<script>
+    function selectAction(donorAddress) {
+        window.location.href = "restaurant_pickup.php?donorAddress=" + encodeURIComponent(donorAddress);
+    }
+</script>
+
 </body>
 </html>
-
-    
