@@ -187,7 +187,7 @@
                         }
 
                         // Assuming you have a table named 'econsave_request' with columns 'econsave_food' and 'econsave_quantity'
-                        $sql = "SELECT econsave_food, econsave_quantity FROM econsave_request ORDER BY id DESC LIMIT 1";
+                        $sql = "SELECT econsave_food, econsave_quantity, econsave_expiry FROM econsave_request ORDER BY id DESC LIMIT 1";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -195,10 +195,12 @@
                             $row = $result->fetch_assoc();
                             $foodName = $row['econsave_food'];
                             $quantity = $row['econsave_quantity'];
+                            $expiryDate = $row['econsave_expiry'];
                         } else {
                             // Set default values if no data is found
                             $foodName = "Default Food";
                             $quantity = "0";
+                            $expiryDate = "N/A";
                         }
 
                         // Close the database connection
@@ -220,6 +222,9 @@
                         <label for="quantity">Quantity:</label>
                         <input type="text" id="quantity" name="quantity" value="<?php echo $quantity; ?>" readonly>
 
+                        <label for="quantity">Best Before:</label>
+                        <input type="text" id="expiryDate" name="expiryDate" value="<?php echo $expiryDate; ?>" readonly>
+
                         <button type="submit">OK</button>
                     </form>
                 </div>
@@ -233,10 +238,12 @@
             // Update the values using PHP variables
             var foodName = "<?php echo $foodName; ?>";
             var quantity = "<?php echo $quantity; ?>";
+            var expiryDate = "<?php echo $expiryDate; ?>";
 
             // Update the fields in the receipt form
             document.getElementById("foodName").value = foodName;
             document.getElementById("quantity").value = quantity;
+            document.getElementById("expiryDate").value = expiryDate;
 
             // Display the receipt form
             document.getElementById("receiptForm").style.display = "block";

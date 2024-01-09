@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="shop.css">
-    <title>Description</title>
+    <title>Dashboard</title>
 </head>
 <style>
     body {
@@ -27,7 +27,7 @@
     .request-volunteer-form {
         max-width: 400px;
         margin: 0 auto;
-        background-color: #f4f4f4;
+        background-color: white;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -46,7 +46,7 @@
     .request-volunteer-form label {
         display: block;
         margin-bottom: 8px;
-        color: #333;
+        color: white;
     }
 
     .request-volunteer-form input,
@@ -80,7 +80,7 @@
     }
 
     .request-volunteer-form button {
-        background-color: #4caf50;
+        background-color: white;
         color: white;
         padding: 12px 20px;
         border: none;
@@ -90,7 +90,7 @@
     }
 
     .request-volunteer-form button:hover {
-        background-color: #45a049;
+        background-color: white;
     }
 
     <style>
@@ -118,8 +118,8 @@
         }
 
         .logo img {
-            height: 30px;
-            margin-right: 10px;
+            height: 90px;
+            margin-right: 5px;
         }
 
         .logo span {
@@ -223,11 +223,9 @@
     }
 </style>
 <body>
-    
     <div class="app">
         <header class="app-header">
             <div class="app-header-logo">
-                
                 <div class="logo">
                     <span class="logo-icon">
                         <img src="logo.png" />
@@ -238,7 +236,6 @@
                     </h1>
                 </div>
             </div>
-            
             <div class="app-header-navigation">
                 <div class="tabs">
                 <a href="dashboard.php" class="active">
@@ -250,7 +247,7 @@
                     <a href="volunteer.php">
                         Volunteer
                     </a>
-                    <a href="donation.php" >
+                    <a href="donation.php">
                         Donation
                     </a>
                     <a href="notification.php">
@@ -279,11 +276,11 @@
             <div class="app-body-main-content">
                 <section class="service-section">
                     <br>
-                    <h2>Description</h2>
+                    <h2>Dashboard</h2>
                     
                     <div class="service-section-header">
                     <div class="request-volunteer-form">
-    <h3>           <img src="logo.png" height = 200px alt="Dashboard Image" class="center">
+    <h3>           <img src="logo.png" height = 250px width = 350px alt="Dashboard Image" class="center">
                 <p class="center">Welcome to the FoodBank.MY. Explore the available features and services to make a positive impact!</p></h3>
         
       

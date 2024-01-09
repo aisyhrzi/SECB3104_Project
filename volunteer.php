@@ -97,7 +97,7 @@
             <div class="app-header-logo">
                 <div class="logo">
                     <span class="logo-icon">
-                        <img src="logocantik.png" />
+                        <img src="logo.png" />
                     </span>
                     <h1 class="logo-title">
                         <br>

@@ -72,7 +72,7 @@
 
     <div class="login-container">
         <h2>Login</h2>
-        <form action="valids.php" method="post">
+        <form action="valids2.php" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 

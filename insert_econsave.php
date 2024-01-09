@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     // Retrieve values from the form
     $foodName = $_POST['food_item'];
     $quantityAvailable = $_POST['quantity'];
+    $expiryDate = $_POST['best_before'];
 
     // Retrieve the current foodQuantity from the database
     $sqlSelect = "SELECT foodQuantity FROM donordetails WHERE foodName = '$foodName'";
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $sqlUpdate = "UPDATE donordetails SET foodQuantity = '$updatedQuantity' WHERE foodName = '$foodName'";
             if ($conn->query($sqlUpdate) === TRUE) {
                 // Insert the request into econsave_request table
-                $sqlInsert = "INSERT INTO econsave_request (econsave_food, econsave_quantity) VALUES ('$foodName', '$quantityAvailable')";
+                $sqlInsert = "INSERT INTO econsave_request (econsave_food, econsave_quantity, econsave_expiry) VALUES ('$foodName', '$quantityAvailable', '$expiryDate')";
                 if ($conn->query($sqlInsert) === TRUE) {
                     // Redirect to shopreceipt.php
                     header("Location: shopreceipt.php");
