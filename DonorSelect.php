@@ -7,18 +7,19 @@
     <title>Role Selection</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background-image: url('gambar.png'); /* Add the path to your body background image */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            
-        
-        }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    color: #333;
+    backdrop-filter: blur(2px); /* Add a blur effect to the background */
+}
 
         .navbar {
             background-color: #fff;
@@ -73,10 +74,6 @@
             margin-right: 5px;
         }
 
-        .bottom {
-            margin-top: auto;
-        }
-
         .nav-link.logout {
             cursor: pointer;
             color: black;
@@ -93,10 +90,12 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             overflow: hidden;
-            width: 350px;
-            padding: 20px;
-            margin: auto; /* Center the container horizontally */
-            
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            margin: auto;
+            margin-top: 70px;
+            text-align: center;
         }
 
         .role-form {
@@ -106,26 +105,26 @@
             margin-top: 20px;
         }
 
-        button {
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            background-color: #007BFF; /* Change button color */
-            color: #fff; /* Change text color */
-        }
+        .role-form button {
+    padding: 30px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    width: 100%;
+    transition: transform 0.3s ease; /* Added transition property */
+}
 
-        @media (max-width: 768px) {
-            .donation-container {
-                flex-direction: column;
-            }
+.role-form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Zoom in on hover */
+}
 
-            .details-container,
-            .amount-container {
-                width: 100%;
-            }
+        h2 {
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -166,13 +165,12 @@
     <!-- Role Selection Form Container -->
     <div class="container">
         <div class="role-form">
-            <h2><p>What your want to do today?:</p></h2>
-            <button onclick="window.location.href='donations.php'">Donate food</button>
+           
+            <button onclick="window.location.href='donations.php'">Donate Food</button>
             <button onclick="window.location.href='valids.php'">View Details</button>
-            <button onclick="window.location.href='receivers.php'">Pick up food</button>
-            <button onclick="window.location.href='volunteers.php'">Helps distribute</button>
+            <button onclick="window.location.href='receivers.php'">Pick Up Food</button>
+            <button onclick="window.location.href='volunteers.php'">Help Distribute</button>
             <button onclick="window.location.href='valids2.php'">View Status</button>
-
         </div>
     </div>
 
@@ -181,9 +179,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
