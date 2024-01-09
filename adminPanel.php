@@ -190,7 +190,7 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Define the column labels
-            $columnLabels = array('ID', 'Donor Name', 'Donor Email', 'Donor Phone', 'Donor Address', 'Food Name', 'Food Quantity', 'Pickup Option', 'Food Expiry Date');
+            $columnLabels = array('No.', 'Donor Name', 'Donor Email', 'Donor Phone', 'Donor Address', 'Food Name', 'Food Quantity', 'Pickup Option', 'Food Expiry Date');
 
             // Fetch all records from the database
             $query = "SELECT * FROM donorDetails";
