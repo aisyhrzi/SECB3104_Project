@@ -300,7 +300,7 @@
                         die("Connection failed: " . $conn->connect_error);
                     }
 
-                    $shop = "Ayam Gepuk Top Global";
+                    $shop = "Universal Sambal";
 
                     // SQL query to get the total quantity for Econsave
                     $sql = "SELECT SUM(ayamgepukQuantity) as totalQuantity FROM ayamgepuk";
