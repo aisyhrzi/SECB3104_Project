@@ -138,12 +138,12 @@
                                 }
 
                                 // SQL query to retrieve food items and expiry date from the database
-$sql = "SELECT foodName, foodExpiryDate FROM donordetails";
+$sql = "SELECT ayamasFood, ayamasExpiry FROM ayamas";
 $result = $conn->query($sql);
 
 // Populate the dropdown with retrieved data
 while ($row = $result->fetch_assoc()) {
-    echo '<option value="' . $row['foodName'] . '" data-expiry-date="' . $row['foodExpiryDate'] . '">' . $row['foodName'] . '</option>';
+    echo '<option value="' . $row['ayamasFood'] . '" data-expiry-date="' . $row['ayamasExpiry'] . '">' . $row['ayamasFood'] . '</option>';
 }
 
 
@@ -195,7 +195,7 @@ while ($row = $result->fetch_assoc()) {
 
     // Make an AJAX request to get_quantity.php
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "get_quantity.php?food_item=" + encodeURIComponent(foodName), true);
+    xhr.open("GET", "quantityayamas.php?food_item=" + encodeURIComponent(foodName), true);
 
     // Define the function to handle the response
     xhr.onreadystatechange = function () {
