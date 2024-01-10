@@ -123,127 +123,276 @@
                         <article class="tile">
                             <div class="tile-header">
                                 <i class="ph-fire-simple-light"></i>
+                                <div class="app-body-main-content">
+                                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "foodbank";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    $shop = "Ayamas";
+
+                    // SQL query to get the total quantity for Econsave
+                    $sql = "SELECT SUM(ayamasQuantity) as totalQuantity FROM ayamas";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $totalQuantity = $row["totalQuantity"];
+                    } else {
+                        $totalQuantity = 0;
+                    }
+
+                    echo '<article class="tile" style="background-color: #45ffbc;">
+                            <div class="tile-header">
+                                <i class="ph-lightning-light"></i>
                                 <h3>
-                                    <span>Ayamas</span>
-                                    <span>Food Availibility: </span>
+                                    <span>' . $shop . '</span>
+                                    <span>Food Availibility: ' . $totalQuantity . '</span>
                                 </h3>
                             </div>
-                            <a href="#">
+                            <a href="ayamas.php">
                                 <span>Get Now</span>
                                 <span class="icon-button">
                                     <i class="ph-caret-right-bold"></i>
                                 </span>
                             </a>
+                        </article>';
+
+                    // Close the database connection
+                    $conn->close();
+                    ?>
+                </div>
                         </article>
+                    
                         <article class="tile">
                             <div class="tile-header">
                                 <i class="ph-file-light"></i>
+                                <div class="app-body-main-content">
+                                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "foodbank";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    $shop = "Kuali Emas";
+
+                    // SQL query to get the total quantity for Econsave
+                    $sql = "SELECT SUM(keQuantity) as totalQuantity FROM ke";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $totalQuantity = $row["totalQuantity"];
+                    } else {
+                        $totalQuantity = 0;
+                    }
+
+                    echo '<article class="tile" style="background-color: #C0C0C0;">
+                            <div class="tile-header">
+                                <i class="ph-lightning-light"></i>
                                 <h3>
-                                    <span>Kuali Emas</span>
-                                    <span>Food Availibility: </span>
+                                    <span>' . $shop . '</span>
+                                    <span>Food Availibility: ' . $totalQuantity . '</span>
                                 </h3>
                             </div>
-                            <a href="#">
+                            <a href="kualiemas.php">
                                 <span>Get Now</span>
                                 <span class="icon-button">
                                     <i class="ph-caret-right-bold"></i>
                                 </span>
                             </a>
+                        </article>';
+
+                    // Close the database connection
+                    $conn->close();
+                    ?>
+                </div>
+                        </article>
+                    
                         </article>
                     </div>
                     <div class="tiles">
                         <article class="tile">
                             <div class="tile-header">
                                 <i class="ph-lightning-light"></i>
-                                <h3>
-                                    <span>Marry Brown</span>
-                                    <span>Food Availibility: </span>
-                                </h3>
-                            </div>
-                            <a href="#">
-                                <span>Get Now</span>
-                                <span class="icon-button">
-                                    <i class="ph-caret-right-bold"></i>
-                                </span>
-                            </a>
-                        </article>
-                        <article class="tile">
-                            <div class="tile-header">
-                                <i class="ph-fire-simple-light"></i>
-                                <h3>
-                                    <span>Ayam Gepuk Top Global</span>
-                                    <span>Food Availibility: </span>
-                                </h3>
-                            </div>
-                            <a href="#">
-                                <span>Get Now</span>
-                                <span class="icon-button">
-                                    <i class="ph-caret-right-bold"></i>
-                                </span>
-                            </a>
-                        </article>
-                        <article class="tile">
-                            <div class="tile-header">
-                                <i class="ph-file-light"></i>
-                                <h3>
-                                    <span>FamilyMart</span>
-                                    <span>Food Availibility: </span>
-                                </h3>
-                            </div>
-                            <a href="#">
-                                <span>Get Now</span>
-                                <span class="icon-button">
-                                    <i class="ph-caret-right-bold"></i>
-                                </span>
-                            </a>
-                        </article>
-                    </div>
-                    <div class="tiles">
-                        <article class="tile">
+                                <div class="app-body-main-content">
+                                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "foodbank";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    $shop = "Marry Brown";
+
+                    // SQL query to get the total quantity for Econsave
+                    $sql = "SELECT SUM(mbQuantity) as totalQuantity FROM mb";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $totalQuantity = $row["totalQuantity"];
+                    } else {
+                        $totalQuantity = 0;
+                    }
+
+                    echo '<article class="tile">
                             <div class="tile-header">
                                 <i class="ph-lightning-light"></i>
                                 <h3>
-                                    <span>Electricity</span>
-                                    <span>Food Availibility: </span>
+                                    <span>' . $shop . '</span>
+                                    <span>Food Availibility: ' . $totalQuantity . '</span>
                                 </h3>
                             </div>
-                            <a href="#">
+                            <a href="mb.php">
                                 <span>Get Now</span>
                                 <span class="icon-button">
                                     <i class="ph-caret-right-bold"></i>
                                 </span>
                             </a>
+                        </article>';
+
+                    // Close the database connection
+                    $conn->close();
+                    ?>
+                </div>
                         </article>
+                    
                         <article class="tile">
                             <div class="tile-header">
                                 <i class="ph-fire-simple-light"></i>
+                                <div class="app-body-main-content">
+                                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "foodbank";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    $shop = "Ayam Gepuk Top Global";
+
+                    // SQL query to get the total quantity for Econsave
+                    $sql = "SELECT SUM(ayamgepukQuantity) as totalQuantity FROM ayamgepuk";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $totalQuantity = $row["totalQuantity"];
+                    } else {
+                        $totalQuantity = 0;
+                    }
+
+                    echo '<article class="tile" style="background-color: #45ffbc;">
+                            <div class="tile-header">
+                                <i class="ph-lightning-light"></i>
                                 <h3>
-                                    <span>Heating Gas</span>
-                                    <span>Food Availibility: </span>
+                                    <span>' . $shop . '</span>
+                                    <span>Food Availibility: ' . $totalQuantity . '</span>
                                 </h3>
                             </div>
-                            <a href="#">
+                            <a href="ayamgepuk.php">
                                 <span>Get Now</span>
                                 <span class="icon-button">
                                     <i class="ph-caret-right-bold"></i>
                                 </span>
                             </a>
+                        </article>';
+
+                    // Close the database connection
+                    $conn->close();
+                    ?>
+                </div>
                         </article>
+                    
                         <article class="tile">
                             <div class="tile-header">
                                 <i class="ph-file-light"></i>
+                                <div class="app-body-main-content">
+                                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "foodbank";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    $shop = "Family Mart";
+
+                    // SQL query to get the total quantity for Econsave
+                    $sql = "SELECT SUM(familyQuantity) as totalQuantity FROM familymart";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $totalQuantity = $row["totalQuantity"];
+                    } else {
+                        $totalQuantity = 0;
+                    }
+
+                    echo '<article class="tile" style="background-color: #C0C0C0;">
+
+                            <div class="tile-header">
+                                <i class="ph-lightning-light"></i>
                                 <h3>
-                                    <span>Tax online</span>
-                                    <span>Food Availibility: </span>
+                                    <span>' . $shop . '</span>
+                                    <span>Food Availibility: ' . $totalQuantity . '</span>
                                 </h3>
                             </div>
-                            <a href="#">
+                            <a href="familymart.php">
                                 <span>Get Now</span>
                                 <span class="icon-button">
                                     <i class="ph-caret-right-bold"></i>
                                 </span>
                             </a>
+                        </article>';
+
+                    // Close the database connection
+                    $conn->close();
+                    ?>
+                </div>
                         </article>
+                    
+                    </div>
+                    <div class="tiles">
+                        
+                    
                     </div>
                     <br>
                     <br>
