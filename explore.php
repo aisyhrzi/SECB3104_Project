@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="shop.css">
-    <title>Donation</title>
+    <title>Volunteer</title>
 </head>
 <style>
     body {
@@ -120,10 +120,10 @@
                     <a href="shop.php">
                         Shop
                     </a>
-                    <a href="explore.php">
+                    <a href="volunteer.php" class="active">
                         Volunteer
                     </a>
-                    <a href="donation.php" class="active">
+                    <a href="donation.php">
                         Donation
                     </a>
                     <a href="notification.php">
@@ -147,13 +147,13 @@
             <div class="app-body-main-content">
                 <section class="service-section">
                     <br>
-                    <h2>Donation Aid</h2>
+                    <h2>Volunteer</h2>
                     <div class="service-section-header">
                     <div class="request-volunteer-form">
-    <h3>💸 Your Every Dollar Counts: Even the smallest contribution makes a significant impact. 
-        Your donation doesn't just fund an app; it fuels a mission to eradicate hunger and build a sustainable future.</h3>
-        <form action="userdetails.php" method="POST">
-        <button type="submit"> Go Now </button>
+    <h3>🤝🌎 It's the weekend. <br> Join our weekly distribution mission to reduce food waste and make a positive impact in your community by rescuing surplus food, ensuring it reaches those in need rather than contributing to waste <br>
+        </h3>
+        <form action="volunteer.php" method="POST">
+        <button type="submit"> Explore Now </button>
       
     </form>
     <div class="search-field">

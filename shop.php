@@ -29,7 +29,7 @@
                     <a href="shop.php" class="active">
                         Shop
                     </a>
-                    <a href="volunteer.php">
+                    <a href="explore.php">
                         Volunteer
                     </a>
                     <a href="donation.php">
