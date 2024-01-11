@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('');
+    background-image: url('gambar.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
