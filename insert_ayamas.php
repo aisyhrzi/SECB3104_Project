@@ -13,29 +13,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Create ayamas_request table if not exists
+    $createTableQuery = "CREATE TABLE IF NOT EXISTS ayamas_request (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        ayamas_food VARCHAR(255) NOT NULL,
+        ayamas_quantity INT NOT NULL,
+        ayamas_expiry DATE NOT NULL
+    )";
+    
+    if ($conn->query($createTableQuery) === FALSE) {
+        echo "Error creating table: " . $conn->error;
+        $conn->close();
+        exit();
+    }
+
     // Retrieve values from the form
-    $foodName = $_POST['food_item'];
-    $quantityAvailable = $_POST['quantity'];
-    $expiryDate = $_POST['best_before'];
+    $ayamasFood = $_POST['food_item'];
+    $ayamasQuantity = $_POST['quantity'];
+    $ayamasExpiry = $_POST['best_before'];
 
     // Retrieve the current foodQuantity from the database
-    $sqlSelect = "SELECT foodQuantity FROM donordetails WHERE foodName = '$foodName'";
+    $sqlSelect = "SELECT ayamasQuantity FROM ayamas WHERE ayamasFood = '$ayamasFood'";
     $resultSelect = $conn->query($sqlSelect);
 
     if ($resultSelect->num_rows > 0) {
         $row = $resultSelect->fetch_assoc();
-        $currentQuantity = $row["foodQuantity"];
+        $currentQuantity = $row["ayamasQuantity"];
 
         // Check if there's enough quantity available
-        if ($currentQuantity >= $quantityAvailable) {
+        if ($currentQuantity >= $ayamasQuantity) {
             // Calculate the updated quantity
-            $updatedQuantity = $currentQuantity - $quantityAvailable;
+            $updatedQuantity = $currentQuantity - $ayamasQuantity;
 
             // Update the database with the new quantity
-            $sqlUpdate = "UPDATE donordetails SET foodQuantity = '$updatedQuantity' WHERE foodName = '$foodName'";
+            $sqlUpdate = "UPDATE ayamas SET ayamasQuantity = '$updatedQuantity' WHERE ayamasFood = '$ayamasFood'";
             if ($conn->query($sqlUpdate) === TRUE) {
-                // Insert the request into econsave_request table
-                $sqlInsert = "INSERT INTO econsave_request (econsave_food, econsave_quantity, econsave_expiry) VALUES ('$foodName', '$quantityAvailable', '$expiryDate')";
+                // Insert the request into ayamas_request table
+                $sqlInsert = "INSERT INTO ayamas_request (ayamas_food, ayamas_quantity, ayamas_expiry) VALUES ('$ayamasFood', '$ayamasQuantity', '$ayamasExpiry')";
                 if ($conn->query($sqlInsert) === TRUE) {
                     // Redirect to shopreceipt.php
                     header("Location: shopreceipt.php");

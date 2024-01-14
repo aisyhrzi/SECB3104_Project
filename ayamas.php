@@ -119,7 +119,7 @@
                 <!-- Food Availability Form -->
                 <div class="food-availability-form">
                     <h3>Check Food Availability</h3>
-                    <form action="insert_econsave.php" method="POST">
+                    <form action="insert_ayamas.php" method="POST">
                         <label for="food_item">Select Food Item:</label>
                         <select id="food_item" name="food_item" onchange="updateQuantity()">
                             <?php
@@ -184,7 +184,7 @@ while ($row = $result->fetch_assoc()) {
         // Add your logic to submit the form data and handle it if needed
 
         // Redirect to receipt.php
-        window.location.href = 'shopreceipt.php';
+        window.location.href = 'ayamasreceipt.php';
 
         // Prevent the default form submission
         return false;
