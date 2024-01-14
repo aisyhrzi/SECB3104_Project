@@ -156,6 +156,7 @@ while ($row = $result->fetch_assoc()) {
                         <label for="best_before">Best Before: <span id="best_before">N/A</span></label>
                         <label for="quantity_select">Select Quantity:</label>
                         <select id="quantity_select" name="quantity">
+                        <option value="select">Select Quantity</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <!-- Add more options as needed -->

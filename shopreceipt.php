@@ -222,8 +222,7 @@
                         <label for="quantity">Quantity:</label>
                         <input type="text" id="quantity" name="quantity" value="<?php echo $quantity; ?>" readonly>
 
-                        <label for="quantity">Best Before:</label>
-                        <input type="text" id="expiryDate" name="expiryDate" value="<?php echo $expiryDate; ?>" readonly>
+                        
 
                         <button type="submit">OK</button>
                     </form>
@@ -238,12 +237,12 @@
             // Update the values using PHP variables
             var foodName = "<?php echo $foodName; ?>";
             var quantity = "<?php echo $quantity; ?>";
-            var expiryDate = "<?php echo $expiryDate; ?>";
+            
 
             // Update the fields in the receipt form
             document.getElementById("foodName").value = foodName;
             document.getElementById("quantity").value = quantity;
-            document.getElementById("expiryDate").value = expiryDate;
+           
 
             // Display the receipt form
             document.getElementById("receiptForm").style.display = "block";
