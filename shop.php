@@ -43,7 +43,7 @@
             </div>
             <div class="app-header-actions">
                 <button class="user-profile">
-                    <span>Hi Aisyah</span>
+                    <span>Hi </span>
                     <span>
                         </span>
                 </button>

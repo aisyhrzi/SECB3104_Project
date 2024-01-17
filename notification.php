@@ -5,7 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="shop.css">
-    <title>Your Web App</title>
+    <style>
+        .advertisement {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .advertisement h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .advertisement p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .ad-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .ad-link:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>Ads Notification</title>
 </head>
 <body>
     <div class="app">
@@ -43,7 +79,7 @@
             </div>
             <div class="app-header-actions">
                 <button class="user-profile">
-                    <span>Hi Aisyah</span>
+                    <span>Hi</span>
                     <span>
                         </span>
                 </button>
@@ -60,10 +96,34 @@
                     <div class="service-section-header">
                         <div class="search-field">
                             <i class="ph-magnifying-glass"></i>
-                        </div>
+                        </div></div>
                         
-                    </div>
-                    
+                        <div class="advertisement">
+                    <h3>Exclusive Offer!</h3>
+                    <p>Get 20% off on selected items. Limited time only!</p>
+                    <a href="ad1_page.php" class="ad-link">Learn More</a>
+                </div>
+
+                <!-- Ad 2 -->
+                <div class="advertisement">
+                    <h3>New Arrivals!</h3>
+                    <p>Check out our latest products. Fresh and exciting!</p>
+                    <a href="ad2_page.php" class="ad-link">Learn More</a>
+                </div>
+
+                <!-- Ad 3 -->
+                <div class="advertisement">
+                    <h3>Flash Sale!</h3>
+                    <p>Hurry! Grab your favorites at discounted prices.</p>
+                    <a href="ad3_page.php" class="ad-link">Learn More</a>
+                </div>
+                
+                <!-- ... (rest of your existing content) ... -->
+                
+            </section>
+        </div>
+
+    
                     
                 <footer class="footer">
                     <h1>FoodBank.MY<small>©</small></h1>
