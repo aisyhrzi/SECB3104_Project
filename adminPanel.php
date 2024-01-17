@@ -190,7 +190,26 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Define the column labels
-            $columnLabels = array('No.', 'Donor Name', 'Donor Email', 'Donor Phone', 'Donor Address', 'Food Name', 'Food Quantity', 'Pickup Option', 'Food Expiry Date');
+            $columnLabels = array('ID', 'Donor Name', 'Donor Email', 'Donor Phone', 'Donor Address', 'Food Name', 'Food Quantity', 'Food Expiry Date', 'Pickup Option');
+
+            // Handle record deletion
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+                $deleteId = $_POST['delete_id'];
+                $deleteQuery = "DELETE FROM donorDetails WHERE id = :id";
+                $deleteStmt = $db->prepare($deleteQuery);
+                $deleteStmt->bindParam(':id', $deleteId, PDO::PARAM_INT);
+
+                if ($deleteStmt->execute()) {
+                    // Record deleted successfully
+                    echo "<script>alert('Record deleted successfully.');</script>";
+                    // Redirect to the same page to refresh the table
+                    echo "<script>window.location.href = 'adminPanel.php';</script>";
+                    exit();
+                } else {
+                    // Error handling if deletion fails
+                    echo "<script>alert('Error deleting record.');</script>";
+                }
+            }
 
             // Fetch all records from the database
             $query = "SELECT * FROM donorDetails";
@@ -215,7 +234,7 @@
                         echo "<td>" . htmlspecialchars($value) . "</td>";
                     }
                     echo "<td>";
-                    echo "<form method='post' style='display:inline;'>";
+                    echo "<form method='post' style='display:inline;' onsubmit='return confirmDelete()'>";
                     echo "<input type='hidden' name='delete_id' value='" . $record['id'] . "'>";
                     echo "<button class='delete-button' type='submit'>Delete</button>";
                     echo "</form>";
@@ -236,34 +255,42 @@
     </div>
 
     <script>
-        function filterTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("filterInput");
-            filter = input.value.toUpperCase();
-            table = document.querySelector("table");
-            tr = table.getElementsByTagName("tr");
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this record?");
+    }
 
-            // Loop through all table rows, and hide those that don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (var j = 0; j < td.length - 1; j++) { // Exclude the last cell with buttons
-                    if (td[j]) {
-                        txtValue = td[j].innerText || td[j].textContent;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                            break; // Break if any of the columns matches the filter
-                        } else {
-                            tr[i].style.display = "none";
-                        }
+    function editRecord(id) {
+        window.location.href = 'editRecord.php?id=' + id;
+    }
+</script>
+
+<script>
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("filterInput");
+        filter = input.value.toUpperCase();
+        table = document.querySelector("table");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those that don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (var j = 0; j < td.length - 1; j++) { // Exclude the last cell with buttons
+                if (td[j]) {
+                    txtValue = td[j].innerText || td[j].textContent;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break; // Break if any of the columns matches the filter
+                    } else {
+                        tr[i].style.display = "none";
                     }
                 }
             }
         }
+    }
+</script>
 
-        function editRecord(id) {
-            window.location.href = 'editRecord.php?id=' + id;
-        }
-    </script>
+</body>
 </body>
 
 </html>
