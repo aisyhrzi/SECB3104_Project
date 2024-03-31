@@ -1,0 +1,12 @@
+{
+    "name": "asus/donor",
+    "description": "foodbank",
+    "autoload": {
+        "psr-4": {
+            "Asus\\Donor\\": "src/"
+        }
+    },
+    "require": {
+        "google/apiclient": "2.0"
+    }
+}
